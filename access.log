@@ -1,0 +1,4 @@
+127.0.0.1 - - [08/Jun/2020:10:52:32 +0200] "GET / HTTP/1.1" 200 472 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+127.0.0.1 - - [08/Jun/2020:10:53:56 +0200] "GET / HTTP/1.1" 200 454 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+127.0.0.1 - - [08/Jun/2020:10:53:56 +0200] "GET /vue.js HTTP/1.1" 200 90552 "http://jsramverk.kryman.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+127.0.0.1 - - [08/Jun/2020:10:53:58 +0200] "GET / HTTP/1.1" 200 453 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
