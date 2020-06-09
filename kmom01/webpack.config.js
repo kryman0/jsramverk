@@ -1,4 +1,5 @@
 const path = require("path");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
     mode: "development",
@@ -12,4 +13,15 @@ module.exports = {
             vue$: path.resolve(__dirname, "./node_modules/vue/dist/vue.esm.js"),
         },
     },
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: "vue-loader",
+            },
+        ],
+    },
+    plugins: [
+        new VueLoaderPlugin(),
+    ],
 };

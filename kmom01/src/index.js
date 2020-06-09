@@ -1,15 +1,12 @@
+// Vue
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+// Views
+import Home from "./views/Home.vue";
+import Reports from "./views/Reports.vue";
+
 Vue.use(VueRouter);
-
-const Home = {
-    template: "<p>works</p>",
-};
-
-const Reports = {
-    template: "<p>Reports for week {{ $route.params.id }}</p>",
-};
 
 const router = new VueRouter({
     routes: [
