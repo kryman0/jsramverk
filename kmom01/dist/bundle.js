@@ -127,7 +127,7 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data () {\n        return {};\n    },\n});\n\n\n//# sourceURL=webpack:///./src/views/Home.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data () {\n        return;\n    },\n});\n\n\n//# sourceURL=webpack:///./src/views/Home.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -139,7 +139,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n\n/* 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data () {\n        let a = 10;\n        return {\n            a: a,\n        };\n    },\n});\n\n\n//# sourceURL=webpack:///./src/views/Reports.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data: function () {\n        return {\n            readme: null,\n        };\n    },\n    created: function () {\n        this.readme = this.getReadme();\n    },\n    methods: {\n        getReadme() {\n            let readme =\n`\n# Installation\n<br />\n<br />\n## Prerequisites\n<br />\n<br />\nMake sure to have npm and node (version ^14, could work on a lower version also) installed.\n<br />\n<br />\n## Setup\n<br />\n<br />\nClone the repository with *git clone git@github.com:kryman0/jsramverk.git*. With the repo comes a pre-configured package.json file. To install the Vue JavaScript framework, and other components and necessary dependencies just run *npm install* in the root folder (where package.json is located).\n<br />\n<br />\nStart the application by browsing the dist/index.html file.\n`;\n            return readme;\n        },\n    },\n});\n\n\n//# sourceURL=webpack:///./src/views/Reports.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -163,7 +163,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", [\n    _c(\"p\", [_vm._v(\"Reports for week \" + _vm._s(_vm.$route.params.id))]),\n    _vm._v(\" \"),\n    _vm._m(0),\n    _vm._v(\" \"),\n    _c(\"p\", [_vm._v(_vm._s(_vm.a))])\n  ])\n}\nvar staticRenderFns = [\n  function() {\n    var _vm = this\n    var _h = _vm.$createElement\n    var _c = _vm._self._c || _h\n    return _c(\"p\", [\n      _vm._v(\"Link to github: \"),\n      _c(\n        \"a\",\n        {\n          attrs: {\n            target: \"_blank\",\n            href: \"https://github.com/kryman0/jsramverk\"\n          }\n        },\n        [_vm._v(\"jsramverk\")]\n      )\n    ])\n  }\n]\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/views/Reports.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", [\n    _c(\"p\", [_vm._v(\"Reports for week \" + _vm._s(_vm.$route.params.id))]),\n    _vm._v(\" \"),\n    _vm._m(0),\n    _vm._v(\" \"),\n    _c(\"p\", [_c(\"span\", { domProps: { innerHTML: _vm._s(_vm.readme) } })])\n  ])\n}\nvar staticRenderFns = [\n  function() {\n    var _vm = this\n    var _h = _vm.$createElement\n    var _c = _vm._self._c || _h\n    return _c(\"p\", [\n      _vm._v(\"Link to github: \"),\n      _c(\n        \"a\",\n        {\n          attrs: {\n            target: \"_blank\",\n            href: \"https://github.com/kryman0/jsramverk\"\n          }\n        },\n        [_vm._v(\"jsramverk\")]\n      )\n    ])\n  }\n]\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/views/Reports.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
