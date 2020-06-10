@@ -5,12 +5,17 @@
 </template>
 
 <script>
-    export default {
-        data () {
-            return;
-        },
-    };
+import css from "css-loader";
+
+export default {
+    data: function () {
+        return {};
+    },
+};
 </script>
 
-<style>
+<style scoped>
+    p {
+        background-color: aqua;
+    }
 </style>

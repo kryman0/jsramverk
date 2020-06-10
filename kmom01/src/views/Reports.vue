@@ -43,5 +43,8 @@ Start the application by browsing the dist/index.html file.
 };
 </script>
 
-<style>
+<style scoped>
+    p {
+        background-color: lightblue;
+    }
 </style>
