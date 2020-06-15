@@ -1,9 +1,18 @@
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode: "development",
-    entry: "./src/index.js",
+    entry: {
+        app: "./src/index.js",
+    },
+    devServer: {
+        contentBase: path.join(__dirname, "public"),
+        watchContentBase: true,
+        publicPath: "/public/",
+    },
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "dist"),
@@ -30,5 +39,9 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'Development',
+        }),
     ],
 };
