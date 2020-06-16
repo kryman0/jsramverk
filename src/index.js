@@ -15,8 +15,6 @@ const router = new VueRouter({
     ],
 });
 
-const app = new Vue({
+new Vue({
     router
 }).$mount("#app");
-
-// document.getElementById("app").innerHTML = "hello";

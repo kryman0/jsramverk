@@ -6,30 +6,27 @@
 
 <script>
 import css from "css-loader";
+import Utils from "../models/utils";
 
 export default {
     data: function () {
-        //let me = this.getHome();
-
         return {
-            me: "hello"
+            me: null,
         };
+    },
+    mounted: function () {
+        this.$nextTick(function () {
+            this.getHome();
+        });
     },
     methods: {
         getHome: function () {
-            return fetch("http://localhost:5000").then(
-                resp => {
-                    if (!resp.ok) {
-                        throw new Error("Response url was not ok.");
-                    } else {
-                        return resp.text();
-                    }
-                }
-            ).catch(err => {
-                console.log("Something went wrong:", err);
-            });
-        }
-    }
+            fetch(Utils.localhostFullUrl()).then(
+                resp => resp.text()).then(
+                    data => { this.me = data; }).catch(
+                        err => console.log("Something went wrong:", err));
+        },
+    },
 };
 </script>
 
