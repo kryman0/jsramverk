@@ -22,9 +22,10 @@ export default {
     methods: {
         getHome: function () {
             fetch(Utils.localhostFullUrl()).then(
-                resp => resp.text()).then(
-                    data => { this.me = data; }).catch(
-                        err => console.log("Something went wrong:", err));
+                resp => resp.text(),
+            ).then(
+                data => { this.me = data; }
+            ).catch(err => console.log("Something went wrong:", err));
         },
     },
 };

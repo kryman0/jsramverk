@@ -1,43 +1,36 @@
 <template>
     <div>
         <p>Reports for week {{ $route.params.id }}</p>
-        <p>Link to github: <a target="_blank" href="https://github.com/kryman0/jsramverk">jsramverk</a></p>
-        <p><span v-html="readme"></span></p>
+        <p>
+            <span v-html="readme"></span>
+        </p>
     </div>
 </template>
 
 <script>
+import Utils from "../models/utils";
+
+const marked = require("marked");
+
 export default {
     data: function () {
         return {
             readme: null,
         };
     },
-    created: function () {
-        this.readme = this.getReadme();
+    mounted: function () {
+        this.$nextTick(function () {
+            this.getReadme();
+        });
     },
     methods: {
         getReadme() {
-            let readme =
-`
-# Installation
-<br />
-<br />
-## Prerequisites
-<br />
-<br />
-Make sure to have npm and node (version ^14, could work on a lower version also) installed.
-<br />
-<br />
-## Setup
-<br />
-<br />
-Clone the repository with *git clone git@github.com:kryman0/jsramverk.git*. With the repo comes a pre-configured package.json file. To install the Vue JavaScript framework, and other components and necessary dependencies just run *npm install* in the root folder (where package.json is located).
-<br />
-<br />
-Start the application by browsing the dist/index.html file.
-`;
-            return readme;
+            fetch(Utils.localhostFullUrl() + "/reports/week/1").then(
+                resp => resp.text(),
+            ).then(data => {
+                this.readme = marked(JSON.parse(data), { pedantic: true });
+                // console.log(marked(this.readme));
+            }).catch(err => console.log("Something went wrong:", err));
         },
     },
 };
