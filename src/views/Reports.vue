@@ -20,12 +20,19 @@ export default {
     },
     mounted: function () {
         this.$nextTick(function () {
-            this.getReadme();
+            // console.log(this.$route.params.id);
+            this.getReadme(this.$route.params.id);
+        });
+    },
+    updated: function () {
+        this.$nextTick(function () {
+            // console.log(this.$route.params.id);
+            this.getReadme(this.$route.params.id);
         });
     },
     methods: {
-        getReadme() {
-            fetch(Utils.localhostFullUrl() + "/reports/week/1").then(
+        getReadme(week) {
+            fetch(Utils.localhostFullUrl() + `/reports/week/${week}`).then(
                 resp => resp.text(),
             ).then(data => {
                 this.readme = marked(JSON.parse(data), { pedantic: true });
