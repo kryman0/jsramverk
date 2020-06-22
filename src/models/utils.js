@@ -6,6 +6,9 @@ const Utils = {
     localhostFullUrl: function () {
         return this.localhost.url + ":" + this.localhost.port;
     },
+    messages: {
+        error: "Something went wrong!",
+    },
 };
 
 module.exports = Utils;
