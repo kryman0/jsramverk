@@ -1,6 +1,6 @@
 <template>
-    <div class="form-layout">
-        <form v-on:submit.prevent="postForm">
+    <div>
+        <form class="form-layout" v-on:submit.prevent="postForm">
             <fieldset>
                 <legend>Register</legend>
                     <label for="email">E-mail</label>
@@ -9,9 +9,16 @@
                     <input id="password" name="password" type="password" v-model="password" />
                     <input type="submit" value="Register" />
             </fieldset>
-
         </form>
+        <!-- <p v-bind:class="{
+            successMessage: successFromPost,
+            errorMessage: errorFromPost
+        }"> -->
+        <p v-bind:class="message">
+            {{ errorFromPost || successFromPost }}
+        </p>
     </div>
+
 </template>
 
 <script>
@@ -22,7 +29,17 @@ export default {
         return {
             email: null,
             password: null,
+            successFromPost: null,
+            errorFromPost: null,
         };
+    },
+    computed: {
+        message: function () {
+            return {
+                'error-message': this.errorFromPost,
+                'success-message': this.successFromPost,
+            };
+        },
     },
     methods: {
         postForm: function () {
@@ -41,8 +58,21 @@ export default {
 
             fetch(request)
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(utils.messages.error, err));
+            .then(data => {
+                if (data.errno) {
+                    // console.log(JSON.stringify(data));
+                    this.errorFromPost = utils.messages.error + " " + JSON.stringify(data);
+                } else {
+                    this.successFromPost = data;
+                    this.errorFromPost = false;
+                }
+                // console.log("success", this.successFromPost);
+            })
+            .catch(err => {
+                this.errorFromPost = utils.messages.error + " " + err;
+                this.successFromPost = false;
+                // console.log("error", this.errorFromPost);
+            });
 
             this.clearForm();
         },
@@ -53,7 +83,7 @@ export default {
     },
 }
 // Todos:
-// Kör clearForm i slutet av postForm och skicka en indikation till vyn att det blivit postat.
+//
 </script>
 
 <style scoped>
@@ -61,6 +91,7 @@ export default {
         width: 500px;
         margin: 50px 0;
     }
+
     input {
         display: block;
         width: 150px;
@@ -77,5 +108,13 @@ export default {
     label {
         display: block;
         margin: 10px 0 0;
+    }
+
+    .success-message {
+        color: green;
+    }
+
+    .error-message {
+        color: red;
     }
 </style>
