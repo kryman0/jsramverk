@@ -10,10 +10,6 @@
                     <input type="submit" value="Register" />
             </fieldset>
         </form>
-        <!-- <p v-bind:class="{
-            successMessage: successFromPost,
-            errorMessage: errorFromPost
-        }"> -->
         <p v-bind:class="message">
             {{ errorFromPost || successFromPost }}
         </p>
