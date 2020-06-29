@@ -8,7 +8,11 @@ const Utils = {
     },
     messages: {
         error: "Something went wrong!",
+        login: "You have successfully logged in!",
     },
+
+    token: null,
 };
+
 
 module.exports = Utils;

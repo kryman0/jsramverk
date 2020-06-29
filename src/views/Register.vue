@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="form-layout" v-on:submit.prevent="postForm">
+        <form class="form-layout" v-on:submit.prevent="registerUser">
             <fieldset>
                 <legend>Register</legend>
                     <label for="email">E-mail</label>
@@ -38,7 +38,7 @@ export default {
         },
     },
     methods: {
-        postForm: function () {
+        registerUser: function () {
             let request = new Request(
                 utils.localhostFullUrl() + "/register", {
                 method: "POST",
@@ -81,36 +81,3 @@ export default {
 // Todos:
 //
 </script>
-
-<style scoped>
-    .form-layout {
-        width: 500px;
-        margin: 50px 0;
-    }
-
-    input {
-        display: block;
-        width: 150px;
-        margin: 5px 0;
-        padding: 5px;
-    }
-
-    input[type="submit"] {
-        width: 164px;
-        margin-top: 20px;
-        cursor: pointer;
-    }
-
-    label {
-        display: block;
-        margin: 10px 0 0;
-    }
-
-    .success-message {
-        color: green;
-    }
-
-    .error-message {
-        color: red;
-    }
-</style>

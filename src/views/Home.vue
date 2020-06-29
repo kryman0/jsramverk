@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import css from "css-loader";
 import Utils from "../models/utils";
 
 export default {
