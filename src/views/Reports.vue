@@ -31,7 +31,7 @@ export default {
         });
     },
     methods: {
-        getReadme(week) {
+        getReadme(week = null) {
             fetch(Utils.localhostFullUrl() + `/reports/week/${week}`).then(
                 resp => resp.text(),
             ).then(data => {

@@ -25,8 +25,8 @@ export default {
             ).then(
                 data => { this.me = data; }
             ).catch(err => console.log("Something went wrong:", err));
-        },
-    },
+        }
+    }
 };
 </script>
 

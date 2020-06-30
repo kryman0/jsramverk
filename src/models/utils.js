@@ -10,7 +10,6 @@ const Utils = {
         error: "Something went wrong!",
         login: "You have successfully logged in!",
     },
-
     token: null,
 };
 
