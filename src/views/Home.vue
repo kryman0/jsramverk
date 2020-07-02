@@ -8,6 +8,7 @@
 import Utils from "../models/utils";
 
 export default {
+    name: "Home",
     data: function () {
         return {
             me: null,

@@ -17,17 +17,23 @@
 </template>
 
 <script>
+// Todos:
+// clearForm.
+// import navbar from "./TopNavbar.vue";
 import Utils from "../models/utils";
 
 
 export default {
+    name: "Login",
+    props: [ "hasLoggedIn" ],
     data: function () {
+        // console.log(this.$parent.$children[0].isUserLoggedIn);
         return {
             email: null,
             password: null,
-            token: null,
             errorFromPost: null,
             successFromPost: null,
+            // "navbar.isUserLoggedIn": true,
         };
     },
     computed: {
@@ -36,7 +42,7 @@ export default {
                 'error-message': this.errorFromPost,
                 'success-message': this.successFromPost
             };
-        }
+        },
     },
     methods: {
         login: function () {
@@ -68,14 +74,15 @@ export default {
                         Utils.token = data;
                         this.successFromPost = Utils.messages.login;
                         this.errorFromPost = false;
-                        // console.log(this.token);
+                        // this.$parent.$children[0].isUserLoggedIn = true;
+                        console.log(document.getElementsByClassName("loginUser")[0].style.display = "inline");
                     }
                 }
             ).catch(err => {
                 this.errorFromPost = Utils.messages.error + " " + err;
                 this.successFromPost = false;
             });
-        }
+        },
     }
 }
 </script>
