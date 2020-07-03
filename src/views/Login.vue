@@ -25,7 +25,7 @@ import Utils from "../models/utils";
 
 export default {
     name: "Login",
-    props: [ "hasLoggedIn" ],
+    // props: [ "userIsNotLoggedIn" ],
     data: function () {
         // console.log(this.$parent.$children[0].isUserLoggedIn);
         return {
@@ -33,6 +33,7 @@ export default {
             password: null,
             errorFromPost: null,
             successFromPost: null,
+            userIsNotLoggedIn: false,
             // "navbar.isUserLoggedIn": true,
         };
     },
@@ -72,10 +73,11 @@ export default {
                         this.successFromPost = false;
                     } else {
                         Utils.token = data;
+                        Utils.user.email = this.email;
                         this.successFromPost = Utils.messages.login;
                         this.errorFromPost = false;
                         // this.$parent.$children[0].isUserLoggedIn = true;
-                        console.log(document.getElementsByClassName("loginUser")[0].style.display = "inline");
+                        document.getElementsByClassName("top-navbar-remove-element")[0].className = "show-inline-element";
                     }
                 }
             ).catch(err => {

@@ -11,6 +11,9 @@ const Utils = {
         login: "You have successfully logged in!",
     },
     token: null,
+    user: {
+        email: null
+    }
 };
 
 

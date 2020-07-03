@@ -6,7 +6,8 @@
         <router-link to="/register">Register a user</router-link>
         <router-link to="/login">Login</router-link>
         <!-- <router-link v-if="isUserLoggedIn" to="/reports">if login successfull med token...</router-link> -->
-        <router-link class="loginUser" to="/reports">if login successfull med token...</router-link>
+        <router-link class="top-navbar-remove-element" to="/reports">Reports</router-link>
+        <router-link to="/reports">Reports</router-link>
     </div>
 </template>
 
@@ -16,14 +17,14 @@
 
 export default {
     name: "TopNavbar",
-    props: [ "hasLoggedIn" ],
     // components: {
     //     Login
     // },
     data: function () {
         // console.log(this.$children);
         return {
-            isUserLoggedIn: false
+            isUserLoggedIn: false,
+            // userIsNotLoggedIn: true
         }
     },
     methods: {
@@ -39,9 +40,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-    .loginUser {
-        display: none;
-    }
-</style>

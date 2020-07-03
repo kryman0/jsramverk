@@ -28,3 +28,11 @@ label {
 .error-message {
     color: red;
 }
+
+.top-navbar-remove-element {
+    display: none;
+}
+
+.show-inline-element {
+    display: inline;
+}
