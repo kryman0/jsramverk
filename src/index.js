@@ -11,7 +11,7 @@ import VueRouter from "vue-router";
 import App from "./App.vue";
 import Home from "./views/Home.vue";
 import Register from "./views/Register.vue";
-import Reports from "./views/Reports.vue";
+import Reports from "./views/reports/Reports.vue";
 import Login from "./views/Login.vue";
 // import TopNavbar from "./views/TopNavbar.vue";
 

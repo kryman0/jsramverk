@@ -36,3 +36,11 @@ label {
 .show-inline-element {
     display: inline;
 }
+
+.show-pointer {
+    cursor: pointer;
+}
+
+.remove-element {
+    display: none;
+}
