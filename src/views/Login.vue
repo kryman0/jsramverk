@@ -19,7 +19,7 @@
 <script>
 // Todos:
 // clearForm.
-// import navbar from "./TopNavbar.vue";
+
 import Utils from "../models/utils";
 
 
@@ -46,6 +46,10 @@ export default {
         },
     },
     methods: {
+        clearForm: function () {
+            this.email = null;
+            this.password = null;
+        },
         login: function () {
             let request = new Request(
                 Utils.localhostFullUrl() + "/login",
@@ -78,6 +82,7 @@ export default {
                         this.errorFromPost = false;
                         // this.$parent.$children[0].isUserLoggedIn = true;
                         document.getElementsByClassName("top-navbar-remove-element")[0].className = "show-inline-element";
+                        this.clearForm();
                     }
                 }
             ).catch(err => {

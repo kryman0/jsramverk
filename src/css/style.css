@@ -41,6 +41,10 @@ label {
     cursor: pointer;
 }
 
+.show-block-element {
+    display: block;
+}
+
 .remove-element {
     display: none;
 }

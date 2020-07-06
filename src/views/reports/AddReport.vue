@@ -1,19 +1,17 @@
 <template>
     <div>
-        <!-- <button v-if="!$route.params.id">add</button> -->
-
-        <form>
+        <form v-on:submit.prevent="createReport">
             <fieldset>
                 <legend>Add report</legend>
 
                 <label for="title">Title</label>
-                <input id="title" type="text" name="title" />
+                <input id="title" type="text" name="title" v-model="title" />
 
                 <label for="text">Text</label>
-                <input id="text" type="text" name="text" />
+                <input id="text" type="text" name="text" v-model="text" />
 
                 <label for="user_email">Email</label>
-                <input id="user_email" type="text" name="user_email" readonly />
+                <input id="user_email" type="text" name="user_email" v-bind:value="report.email" readonly />
 
                 <input type="submit" value="Add report" />
             </fieldset>
@@ -24,9 +22,18 @@
 <script>
 export default {
     name: "AddReport",
+    props: {
+        report: Object,
+    },
     data: function () {
         return {
-
+            title: this.title,
+            text: this.text,
+        }
+    },
+    methods: {
+        createReport: function () {
+            // console.log(this.title, this.userEmail);
         }
     }
 }

@@ -21,6 +21,7 @@
 import utils from "../models/utils";
 
 export default {
+    name: "Register",
     data: function () {
         return {
             email: null,

@@ -7,8 +7,14 @@
             </p>
         </div>
         <div v-else-if="!$route.params.id">
-            <p><button v-on:click="createReport">Lägg till rapport</button></p>
-            <AddReport v-bind:class="{ 'remove-element': check }" />
+            <p><button v-on:click="isAddReportBtnClicked = true;">Add report</button></p>
+            <AddReport
+                v-if="isAddReportBtnClicked"
+                v-bind:report="{
+                    email: email
+                }"
+            />
+
             <p>Reports for user {{ email }}</p>
             <div v-for="report in reports" v-bind:key="report.id">
                 <p class="show-pointer" v-on:click="goToReport(report.id)">Title comes here to be clickable.</p>
@@ -34,6 +40,7 @@ export default {
     components: {
         AddReport
     },
+    // props: [ "likes" ],
     data: function () {
         return {
             readmeFile: null,
@@ -68,19 +75,10 @@ export default {
                 this.readmeFile = value;
             }
         },
-        isAddReportBtnClicked: {
-            get: function () {
-
-                return this.isAddReportBtnClicked
-            },
-            set: function (value) {
-                this.isAddReportBtnClicked = value;
-            }
-        }
     },
     methods: {
         getReports(week = null) {
-            // console.log(Utils.user.email);
+            // console.log(this.email);
             let request = new Request(
                 Utils.localhostFullUrl() + "/reports",
             );
@@ -106,9 +104,6 @@ export default {
                 return this.reportsObj = data;
             }).catch(err => console.log("Something went wrong:", err));
         },
-        createReport: function () {
-            this.check = true;
-        }
         // goToReport: function (id) {
         //     let request = new Request(
         //         Utils.localhostFullUrl() + "/reports",
