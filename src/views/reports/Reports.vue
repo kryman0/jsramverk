@@ -67,7 +67,7 @@ export default {
             get: function () {
                 this.getReports(this.$route.params.id);
 
-                this.isAddReportBtnClicked = false;
+                this.isAddReportBtnClicked = this.email ? true : false;
 
                 return this.readmeFile;
             },
@@ -92,16 +92,21 @@ export default {
                     return resp.text();
                 }
             ).then(data => {
+                data = JSON.parse(data);
+
                 if (week) {
                     // this.readme = marked(JSON.parse(data), { pedantic: true });
                     // console.log(data);
-                    return this.readmeFile = marked(JSON.parse(data), { pedantic: true });
+                    return this.readmeFile = marked(data, { pedantic: true });
                 }
 
-                data = JSON.parse(data);
-                this.email = data[0].user_email;
+                if (data.length > 0) {
+                    this.email = data[0].user_email;
 
-                return this.reportsObj = data;
+                    return this.reportsObj = data;
+                }
+
+                this.email = data.email;
             }).catch(err => console.log("Something went wrong:", err));
         },
         // goToReport: function (id) {

@@ -5,9 +5,7 @@
         <router-link to="/reports/week/2">Reports w. 2</router-link>
         <router-link to="/register">Register a user</router-link>
         <router-link to="/login">Login</router-link>
-        <!-- <router-link v-if="isUserLoggedIn" to="/reports">if login successfull med token...</router-link> -->
         <router-link class="top-navbar-remove-element" to="/reports">Reports</router-link>
-        <router-link to="/reports">Reports</router-link>
     </div>
 </template>
 
