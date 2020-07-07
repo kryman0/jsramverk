@@ -10,9 +10,9 @@ import VueRouter from "vue-router";
 // Views
 import App from "./App.vue";
 import Home from "./views/Home.vue";
+import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Reports from "./views/reports/Reports.vue";
-import Login from "./views/Login.vue";
 // import TopNavbar from "./views/TopNavbar.vue";
 
 
@@ -23,9 +23,9 @@ const router = new VueRouter({
     routes: [
         { path: "/", component: Home },
         { path: "/register", component: Register },
+        { path: "/login", component: Login },
         { path: "/reports", component: Reports },
         { path: "/reports/week/:id", component: Reports },
-        { path: "/login", component: Login },
     ],
 });
 

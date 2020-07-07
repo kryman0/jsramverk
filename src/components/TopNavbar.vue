@@ -5,7 +5,8 @@
         <router-link to="/reports/week/2">Reports w. 2</router-link>
         <router-link to="/register">Register a user</router-link>
         <router-link to="/login">Login</router-link>
-        <router-link class="top-navbar-remove-element" to="/reports">Reports</router-link>
+        <router-link v-if="isUserLoggedIn" to="/reports">Reports</router-link>
+        <router-link to="/reports">Reports (remove later)</router-link>
     </div>
 </template>
 
@@ -22,18 +23,6 @@ export default {
         // console.log(this.$children);
         return {
             isUserLoggedIn: false,
-            // userIsNotLoggedIn: true
-        }
-    },
-    methods: {
-        checkUserIsLoggedIn: function (value) {
-            // const { value } = event.target;
-            console.log(value);
-            this.isUserLoggedIn = value;
-            // if (Utils.token) {
-            //     console.log(v)
-            //     this.isUserLoggedIn = true;
-            // }
         }
     }
 }

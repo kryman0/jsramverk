@@ -18,7 +18,6 @@
 
 <script>
 // Todos:
-// clearForm.
 
 import Utils from "../models/utils";
 
@@ -80,8 +79,8 @@ export default {
                         Utils.user.email = this.email;
                         this.successFromPost = Utils.messages.login;
                         this.errorFromPost = false;
-                        // this.$parent.$children[0].isUserLoggedIn = true;
-                        document.getElementsByClassName("top-navbar-remove-element")[0].className = "show-inline-element";
+                        this.$parent.$children[0].isUserLoggedIn = true;
+                        // document.getElementsByClassName("top-navbar-remove-element")[0].className = "show-inline-element";
                         this.clearForm();
                     }
                 }

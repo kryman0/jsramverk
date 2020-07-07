@@ -11,7 +11,8 @@
             <AddReport
                 v-if="isAddReportBtnClicked"
                 v-bind:report="{
-                    email: email
+                    email: email,
+                    token: token
                 }"
             />
 
@@ -47,6 +48,7 @@ export default {
             reportsObj: null,
             email: null,
             isAddReportBtnClicked: false,
+            token: Utils.token
         };
     },
     // updated: function () {
