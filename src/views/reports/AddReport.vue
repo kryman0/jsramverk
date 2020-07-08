@@ -8,7 +8,7 @@
                 <input id="title" type="text" name="title" v-model="title" />
 
                 <label for="text">Text</label>
-                <textarea id="text" name="text" v-model="text"></textarea>
+                <input id="text" type="text" name="text" v-model="text" />
 
                 <label for="week">Week</label>
                 <input id="week" type="number" min="3" name="week" v-model="week" />
@@ -20,11 +20,15 @@
             </fieldset>
         </form>
 
-        <p>{{ messageFromDb }}</p>
+        <p>{{ fetchMsg }}</p>
     </div>
 </template>
 
 <script>
+// Todos:
+// clearform.
+// fixa week med årtal som sparas som integer, tex. 202005.
+
 import Utils from "../../models/utils";
 
 
@@ -35,10 +39,10 @@ export default {
     },
     data: function () {
         return {
-            title: this.title,
-            text: this.text,
-            week: this.week,
-            messageFromDb: null
+            title: null,
+            text: null,
+            week: null,
+            fetchMsg: null
         }
     },
     methods: {
@@ -47,29 +51,38 @@ export default {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    'x-access-token': this.report.token
+                    // "Content-Type": "application/x-www-form-urlencoded",
+                    // 'x-access-token': this.report.token
                 },
+                // body: new FormData(document.getElementById("add"))
                 body: JSON.stringify({
                     title: this.title,
                     text: this.text,
                     week:  this.week,
                     email: this.report.email
                 })
-            }).then(resp => {
-                return resp.json();
-            }).then(data => {
+            }).then(
+                resp => resp.json()
+            ).then(data => {
+                // data = JSON.parse(data);
+
                 if (data.errno || data.error) {
-                    this.messageFromDb = Utils.messages.error + " " + JSON.stringify(data);
+                    // console.log("error:", data);
+                    this.fetchMsg = Utils.messages.error + " " + JSON.stringify(data);
                 } else {
-                    this.messageFromDb = "Successfully created a new report!";
+                    // console.log("success:", data);
+                    this.fetchMsg = data;
+                    this.report.getReports();
+                    this.clearForm();
                 }
-
-                return this.messageFromDb;
             }).catch(error => {
-                this.messageFromDb = Utils.messages.error + " " + error;
-
-                return this.messageFromDb;
+                this.fetchMsg = Utils.messages.error + " " + error;
             });
+        },
+        clearForm: function () {
+            this.title = null;
+            this.text = null;
+            this.week = null;
         }
     }
 }

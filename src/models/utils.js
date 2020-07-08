@@ -7,7 +7,7 @@ const Utils = {
         return this.localhost.url + ":" + this.localhost.port;
     },
     messages: {
-        error: "Something went wrong!",
+        error: "Something went wrong from frontend!",
         login: "You have successfully logged in!",
     },
     token: null,

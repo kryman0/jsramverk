@@ -12,13 +12,16 @@
                 v-if="isAddReportBtnClicked"
                 v-bind:report="{
                     email: email,
-                    token: token
+                    token: token,
+                    getReports: getReports,
+                    isAddReportBtnClicked: isAddReportBtnClicked
                 }"
             />
 
             <p>Reports for user {{ email }}</p>
             <div v-for="report in reports" v-bind:key="report.id">
-                <p class="show-pointer" v-on:click="goToReport(report.id)">Title comes here to be clickable.</p>
+                <!-- <p class="show-pointer" v-on:click="goToReport(report.id)">Title comes here to be clickable.</p> -->
+                <p>{{ report.title }}</p>
                 <p>{{ report.text }}</p>
             </div>
         </div>
@@ -45,6 +48,7 @@ export default {
     data: function () {
         return {
             readmeFile: null,
+            reportsObj: !this.$route.params.id ? this.getReports() : null,
             reportsObj: null,
             email: null,
             isAddReportBtnClicked: false,
@@ -52,12 +56,17 @@ export default {
         };
     },
     // updated: function () {
-    //     this.isAddReportBtnClicked = false;
+    //     this.$nextTick(function () {
+    //         if (!this.$route.params.id) {
+    //             this.
+    //         }
+    //     })
+    //     // this.isAddReportBtnClicked = false;
     // },
     computed: {
         reports: {
             get: function () {
-                this.getReports();
+                // this.getReports();
 
                 return this.reportsObj;
             },
@@ -69,7 +78,7 @@ export default {
             get: function () {
                 this.getReports(this.$route.params.id);
 
-                this.isAddReportBtnClicked = this.email ? true : false;
+                this.isAddReportBtnClicked = false;
 
                 return this.readmeFile;
             },
@@ -89,26 +98,28 @@ export default {
                 request = new Request(Utils.localhostFullUrl() + `/reports/week/${week}`);
             }
 
-            fetch(request).then(
+            fetch(
+                request
+            ).then(
                 resp => {
-                    return resp.text();
+                    return resp.json();
                 }
             ).then(data => {
-                data = JSON.parse(data);
+                // data = JSON.parse(data);
+                console.log(data.rows);
 
                 if (week) {
-                    // this.readme = marked(JSON.parse(data), { pedantic: true });
-                    // console.log(data);
+                    // console.log(week);
                     return this.readmeFile = marked(data, { pedantic: true });
                 }
 
-                if (data.length > 0) {
-                    this.email = data[0].user_email;
-
-                    return this.reportsObj = data;
-                }
+                // if (data.length > 0) {
+                //     return data.rows;
+                // }
 
                 this.email = data.email;
+
+                return this.reportsObj = data.rows;
             }).catch(err => console.log("Something went wrong:", err));
         },
         // goToReport: function (id) {
