@@ -11,7 +11,7 @@
                 <input id="text" type="text" name="text" v-model="text" />
 
                 <label for="week">Week</label>
-                <input id="week" type="number" min="3" name="week" v-model="week" />
+                <input id="week" type="number" min="3" max="52" name="week" v-model="week" />
 
                 <label for="user_email">Email</label>
                 <input id="user_email" type="text" name="user_email" v-bind:value="report.email" readonly />
@@ -26,8 +26,6 @@
 
 <script>
 // Todos:
-// clearform.
-// fixa week med årtal som sparas som integer, tex. 202005.
 
 import Utils from "../../models/utils";
 

@@ -1,10 +1,8 @@
 <template>
     <div>
-        <div v-if="$route.params.id">
+        <div v-if="$route.params.id < 3">
             <p>Reports for week {{ $route.params.id }}</p>
-            <p>
-                <span v-html="readme"></span>
-            </p>
+            <p><span v-html="readme"></span></p>
         </div>
         <div v-else-if="!$route.params.id">
             <p><button v-on:click="isAddReportBtnClicked = true;">Add report</button></p>
@@ -17,23 +15,28 @@
                     isAddReportBtnClicked: isAddReportBtnClicked
                 }"
             />
-
             <p>Reports for user {{ email }}</p>
             <div v-for="report in reports" v-bind:key="report.id">
-                <!-- <p class="show-pointer" v-on:click="goToReport(report.id)">Title comes here to be clickable.</p> -->
-                <p>{{ report.title }}</p>
-                <p>{{ report.text }}</p>
+                <p class="show-pointer" v-on:click="getReport(report.id)">
+                    <router-link :to="'/reports/week/' + report.id">{{ report.title }}</router-link>
+                </p>
+                <p>{{ report.text.slice(0, 200) + " ..." }}</p>
             </div>
         </div>
+        <Details v-else-if="$route.params.id > 2 && isReportClicked"
+            v-bind="{ report: reportObj }"
+        />
     </div>
 </template>
 
 <script>
 // Todo:
-// När man klickar på en rapport kolla så den inte krockar med route.params.id.
+// Kolla token fungerar på backend när crud är klar.
+
 import Utils from "../../models/utils";
 
 import AddReport from "./AddReport.vue";
+import Details from "./Details.vue";
 
 
 const marked = require("marked");
@@ -42,32 +45,24 @@ const marked = require("marked");
 export default {
     name: "Reports",
     components: {
-        AddReport
+        AddReport,
+        Details
     },
     // props: [ "likes" ],
     data: function () {
         return {
             readmeFile: null,
             reportsObj: !this.$route.params.id ? this.getReports() : null,
-            reportsObj: null,
+            reportObj: null,
             email: null,
             isAddReportBtnClicked: false,
-            token: Utils.token
+            token: Utils.token,
+            isReportClicked: false,
         };
     },
-    // updated: function () {
-    //     this.$nextTick(function () {
-    //         if (!this.$route.params.id) {
-    //             this.
-    //         }
-    //     })
-    //     // this.isAddReportBtnClicked = false;
-    // },
     computed: {
         reports: {
             get: function () {
-                // this.getReports();
-
                 return this.reportsObj;
             },
             set: function (value) {
@@ -86,6 +81,17 @@ export default {
                 this.readmeFile = value;
             }
         },
+        // getReport: {
+        //     get: function (id) {
+        //         this.reportsObj.forEach(el => {
+        //             if (el.id == id)
+        //         })
+        //         return this.isReportClicked;
+        //     },
+        //     set: function (value) {
+        //         this.isReportClicked = value;
+        //     }
+        // }
     },
     methods: {
         getReports(week = null) {
@@ -122,6 +128,18 @@ export default {
                 return this.reportsObj = data.rows;
             }).catch(err => console.log("Something went wrong:", err));
         },
+        getReport: function (id) {
+
+            this.isReportClicked = true;
+
+            this.reportsObj.forEach(el => {
+                if (el.id == id) {
+                    this.reportObj = el;
+                }
+            });
+
+            console.log(this.reportObj);
+        }
         // goToReport: function (id) {
         //     let request = new Request(
         //         Utils.localhostFullUrl() + "/reports",
@@ -130,11 +148,17 @@ export default {
         //             body: JSON.stringify({id: id})
         //         }
         //     );
-        //     fetch(request).then(
-        //         resp => {
-        //             return resp.json();
+        //     fetch(
+        //         request
+        //     ).then(
+        //         resp => resp.json()
+        //     ).then(
+        //         data => {
+        //             this.
         //         }
-        //     ).then(data)
+        //     ).catch(err => {
+        //         return
+        //     })
         // }
     },
 };
