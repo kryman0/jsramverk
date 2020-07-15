@@ -54,3 +54,14 @@ label {
 .remove-element {
     display: none;
 }
+
+.details-view {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.details-view button {
+    margin: 10px;
+    width: 70px;
+    cursor: pointer;
+}

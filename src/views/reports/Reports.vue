@@ -5,7 +5,7 @@
             <p><span v-html="readme"></span></p>
         </div>
         <div v-else-if="!$route.params.id">
-            <p><button v-on:click="isAddReportBtnClicked = true;">Add report</button></p>
+            <!-- <p><button v-on:click="isAddReportBtnClicked = true;">Add report</button></p>
             <AddReport
                 v-if="isAddReportBtnClicked"
                 v-bind:report="{
@@ -15,16 +15,24 @@
                     isAddReportBtnClicked: isAddReportBtnClicked
                 }"
             />
-            <p>Reports for user {{ email }}</p>
+            <p>Reports for user {{ email }}</p> -->                        
             <div v-for="report in reports" v-bind:key="report.id">
-                <p class="show-pointer" v-on:click="getReport(report.id)">
-                    <router-link :to="'/reports/week/' + report.id">{{ report.title }}</router-link>
+                <p class="show-pointer" v-on:click="getReport(report.week)">
+                    <router-link :to="'/reports/week/' + report.week">{{ report.title }}</router-link>
                 </p>
                 <p>{{ report.text.slice(0, 200) + " ..." }}</p>
             </div>
         </div>
-        <Details v-else-if="$route.params.id > 2 && isReportClicked"
+        <!-- <Details v-else-if="$route.params.id > 2 && isReportClicked"
             v-bind="{ report: reportObj }"
+        /> -->
+        <Details
+            v-else-if="$route.params.id > 2 && token && reports"
+            v-bind:reportObj="{
+                email: email,
+                report: reports
+                //report: getReports(this.$route.params.id)
+            }"
         />
     </div>
 </template>
@@ -48,21 +56,31 @@ export default {
         AddReport,
         Details
     },
+    // beforeMount: function () {
+    //     this.$nextTick(function () {
+    //         return this.getReports(this.$route.params.id);
+    //     });
+    // },
     // props: [ "likes" ],
     data: function () {
+        console.log("from reports", this.reportsObj);
         return {
             readmeFile: null,
-            reportsObj: !this.$route.params.id ? this.getReports() : null,
-            reportObj: null,
+            // reportsObj: !this.$route.params.id ? this.getReports() : null,
+            reportsObj: this.getReports(this.$route.params.id),
+            // reportObj: this.$route.params.id > 2 ? this.getReports(this.$route.params.id) : null,
             email: null,
             isAddReportBtnClicked: false,
-            token: Utils.token,
+            // token: Utils.token,
+            token: true,
             isReportClicked: false,
         };
     },
     computed: {
         reports: {
             get: function () {
+                // this.getReports(this.$route.params.id);
+
                 return this.reportsObj;
             },
             set: function (value) {
@@ -80,65 +98,48 @@ export default {
             set: function (value) {
                 this.readmeFile = value;
             }
-        },
-        // getReport: {
-        //     get: function (id) {
-        //         this.reportsObj.forEach(el => {
-        //             if (el.id == id)
-        //         })
-        //         return this.isReportClicked;
-        //     },
-        //     set: function (value) {
-        //         this.isReportClicked = value;
-        //     }
-        // }
+        }
     },
     methods: {
         getReports(week = null) {
-            // console.log(this.email);
+            // console.log("called?", week);
             let request = new Request(
                 Utils.localhostFullUrl() + "/reports",
             );
 
-            if (week < 3) {
+            if (week) {
                 request = new Request(Utils.localhostFullUrl() + `/reports/week/${week}`);
             }
 
             fetch(
                 request
             ).then(
-                resp => {
-                    return resp.json();
-                }
+                resp => resp.json()
             ).then(data => {
-                // data = JSON.parse(data);
-                console.log(data.rows);
+                console.log("data:", data);
 
-                if (week) {
+                if (week !== null && week < 3) {
                     // console.log(week);
-                    return this.readmeFile = marked(data, { pedantic: true });
+                    return this.readme = marked(data, { pedantic: true });
                 }
-
-                // if (data.length > 0) {
-                //     return data.rows;
+                
+                // if (week > 2) {
+                //     return this.reportObj = data.rows;
                 // }
-
+                
                 this.email = data.email;
 
-                return this.reportsObj = data.rows;
+                return this.reports = data.rows;
+                // return data.rows;
             }).catch(err => console.log("Something went wrong:", err));
         },
-        getReport: function (id) {
-
-            this.isReportClicked = true;
-
+        getReport: function (week) {
             this.reportsObj.forEach(el => {
-                if (el.id == id) {
-                    this.reportObj = el;
+                if (el.week == week) {
+                    // this.reportObj = el;
+                    this.reportsObj = el;
                 }
             });
-
-            console.log(this.reportObj);
         }
         // goToReport: function (id) {
         //     let request = new Request(

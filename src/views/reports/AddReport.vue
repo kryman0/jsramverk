@@ -8,8 +8,8 @@
                 <input id="title" type="text" name="title" v-model="title" />
 
                 <label for="text">Text</label>
-                <input id="text" type="text" name="text" v-model="text" />
-
+                <textarea id="text" name="text" v-model="text"></textarea>
+                
                 <label for="week">Week</label>
                 <input id="week" type="number" min="3" max="52" name="week" v-model="week" />
 
