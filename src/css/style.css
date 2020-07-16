@@ -56,12 +56,13 @@ label {
 }
 
 .details-view {
-    padding: 10px;
-    border: 1px solid black;
+    margin-bottom: 40px;
+    /* padding: 10px; */
+    /* border: 1px solid black; */
 }
 
 .details-view button {
-    margin: 10px;
+    margin: 30px 70px 0 0;
     width: 70px;
     cursor: pointer;
 }

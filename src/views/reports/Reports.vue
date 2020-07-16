@@ -5,7 +5,7 @@
             <p><span v-html="readme"></span></p>
         </div>
         <div v-else-if="!$route.params.id">
-            <!-- <p><button v-on:click="isAddReportBtnClicked = true;">Add report</button></p>
+            <p><button v-on:click="isAddReportBtnClicked = true;">Add report</button></p>
             <AddReport
                 v-if="isAddReportBtnClicked"
                 v-bind:report="{
@@ -15,7 +15,7 @@
                     isAddReportBtnClicked: isAddReportBtnClicked
                 }"
             />
-            <p>Reports for user {{ email }}</p> -->                        
+            <p>Reports for user {{ email }}</p>                        
             <div v-for="report in reports" v-bind:key="report.id">
                 <p class="show-pointer" v-on:click="getReport(report.week)">
                     <router-link :to="'/reports/week/' + report.week">{{ report.title }}</router-link>
@@ -63,7 +63,7 @@ export default {
     // },
     // props: [ "likes" ],
     data: function () {
-        console.log("from reports", this.reportsObj);
+        // console.log("from reports", this.reportsObj);
         return {
             readmeFile: null,
             // reportsObj: !this.$route.params.id ? this.getReports() : null,
@@ -116,7 +116,7 @@ export default {
             ).then(
                 resp => resp.json()
             ).then(data => {
-                console.log("data:", data);
+                // console.log("data:", data);
 
                 if (week !== null && week < 3) {
                     // console.log(week);

@@ -40,7 +40,8 @@ export default {
             title: null,
             text: null,
             week: null,
-            fetchMsg: null
+            fetchMsg: null,
+            email: Utils.user.email
         }
     },
     methods: {
