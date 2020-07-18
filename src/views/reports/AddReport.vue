@@ -46,12 +46,13 @@ export default {
     },
     methods: {
         createReport: function () {
+            console.log(this.$parent);
             fetch(Utils.localhostFullUrl() + "/reports", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     // "Content-Type": "application/x-www-form-urlencoded",
-                    // 'x-access-token': this.report.token
+                    'x-access-token': this.report.token
                 },
                 // body: new FormData(document.getElementById("add"))
                 body: JSON.stringify({
@@ -64,13 +65,19 @@ export default {
                 resp => resp.json()
             ).then(data => {
                 // data = JSON.parse(data);
+                console.log(data);
 
-                if (data.errno || data.error) {
+                if (data.name == "JsonWebTokenError" || 
+                    data.startsWith("Database error") ||
+                    data.errno || 
+                    data.error) {
                     // console.log("error:", data);
-                    this.fetchMsg = Utils.messages.error + " " + JSON.stringify(data);
+                    return this.fetchMsg = Utils.messages.error + " " + JSON.stringify(data);
                 } else {
                     // console.log("success:", data);
-                    this.fetchMsg = data;
+                    alert(data);
+                    
+                    this.$parent.isAddReportBtnClicked = false;
                     this.report.getReports();
                     this.clearForm();
                 }
