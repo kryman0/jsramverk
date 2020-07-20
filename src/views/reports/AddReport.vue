@@ -52,7 +52,7 @@ export default {
                 headers: {
                     "Content-Type": "application/json",
                     // "Content-Type": "application/x-www-form-urlencoded",
-                    'x-access-token': this.report.token
+                    'x-access-token': this.$parent.token
                 },
                 // body: new FormData(document.getElementById("add"))
                 body: JSON.stringify({

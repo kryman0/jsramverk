@@ -13,6 +13,11 @@ export default {
     name: "App",
     components: {
         TopNavbar,
+    },
+    data: function () {
+        return {
+            token: "",
+        }
     }
 }
 </script>

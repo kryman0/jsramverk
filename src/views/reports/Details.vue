@@ -45,8 +45,6 @@
 
 <script>
 // To do:
-// 1. fixa att token följer med efter man editerat när sidan laddas om så man inte behöver logga in hela tiden.
-// kanske hämta ifrån backend istället för utils?
 
 import utils from "../../models/utils";
 
@@ -57,14 +55,14 @@ const marked = require("marked");
 export default {
     name: "Details",
     data: function () {
-        // console.log("from details:", this.reportObj);
+        // console.log("from details:", this.$parent.token);
         this.$route.params.id > 2 ? this.getReport(this.$route.params.id) : null;
         return {
             edit: false,
             msg: null,
             readmeFile: null,
             reportObj: {},
-            token: utils.token
+            token: this.$parent.token
         }
     },
     computed: {
@@ -141,10 +139,11 @@ export default {
                     alert(dbMsg);
                     
                     if (crud == "delete") {                        
-                        window.location.assign("/#/reports");                        
+                        window.location.assign("/#/reports");
                     }
 
-                    window.location.reload();
+                    // window.location.assign(`/#/reports/week/${report.week}`);
+                    // window.location.reload();
                 }
             ).catch(
                 err => {

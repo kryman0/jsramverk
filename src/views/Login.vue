@@ -26,7 +26,7 @@ export default {
     name: "Login",
     // props: [ "userIsNotLoggedIn" ],
     data: function () {
-        // console.log(this.$parent.$children[0].isUserLoggedIn);
+        console.log(this.$parent.token);
         return {
             email: null,
             password: null,
@@ -76,6 +76,7 @@ export default {
                         this.successFromPost = false;
                     } else {
                         Utils.token = data;
+                        this.$parent.token = data;
                         Utils.user.email = this.email;
                         this.successFromPost = Utils.messages.login;
                         this.errorFromPost = false;

@@ -5,7 +5,6 @@
             v-if="isAddReportBtnClicked"
             v-bind:report="{
                 email: email,
-                token: token,
                 getReports: getReports,
                 isAddReportBtnClicked: isAddReportBtnClicked
             }"
