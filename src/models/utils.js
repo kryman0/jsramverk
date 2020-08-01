@@ -13,7 +13,8 @@ const Utils = {
     token: null,
     user: {
         email: null
-    }
+    },
+    url: typeof DEVELOPMENT !== "undefined" ? DEV_URL : PROD_URL
 };
 
 

@@ -24,16 +24,13 @@ import Utils from "../models/utils";
 
 export default {
     name: "Login",
-    // props: [ "userIsNotLoggedIn" ],
     data: function () {
-        console.log(this.$parent.token);
         return {
             email: null,
             password: null,
             errorFromPost: null,
             successFromPost: null,
             userIsNotLoggedIn: false,
-            // "navbar.isUserLoggedIn": true,
         };
     },
     computed: {
@@ -51,7 +48,7 @@ export default {
         },
         login: function () {
             let request = new Request(
-                Utils.localhostFullUrl() + "/login",
+                Utils.url + "/login",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

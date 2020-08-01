@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="$route.params.id < 3">
+        <div v-if="$route.params.id < 4">
             <p>Reports for week {{ $route.params.id }}</p>
             <p><span v-html="readme"></span></p>
         </div>
@@ -28,7 +28,7 @@
                         <textarea style="white-space: pre-line" id="text" name="text" v-model="report.text"></textarea>
                         
                         <label for="week">Week</label>
-                        <input id="week" type="number" min="3" max="52" name="week" v-model="report.week" />
+                        <input id="week" type="number" min="4" max="52" name="week" v-model="report.week" />
 
                         <label for="user_email">Email</label>
                         <input id="user_email" type="text" name="user_email" v-bind:value="report.user_email" readonly />
@@ -88,31 +88,27 @@ export default {
     methods: {
         getReport(week) {
             // console.log("called?", week);
-            let request = new Request(utils.localhostFullUrl() + `/reports/week/${week}`);
+            let request = new Request(utils.url + `/reports/week/${week}`);
 
             fetch(
                 request
             ).then(
                 resp => resp.json()
             ).then(data => {
-                console.log("data:", data);
+                // console.log("data:", data);
 
-                if (week < 3) {
+                if (week < 4) {
                     // console.log(week);
                     return this.readme = marked(data, { pedantic: true });
                 }
                 
-                // if (week > 2) {
-                //     return this.reportObj = data.rows;
-                // }
-
                 return this.report = data;
             }).catch(err => console.log("Something went wrong:", err));
         },
         editReport(crud, report) {
-            console.log(crud, report);
+            // console.log(crud, report);
 
-            let request = new Request(utils.localhostFullUrl() + "/reports", {
+            let request = new Request(utils.url + "/reports", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -124,26 +120,17 @@ export default {
                 })
             });
 
-            // console.log(request);
-
             fetch(
                 request
             ).then(
                 resp => resp.json()
             ).then(
                 dbMsg => {
-                    // if (dbMsg.errno) {
-                    //     return this.msg = utils.messages.error + " " + JSON.stringify(dbMsg);
-                    // }
-
                     alert(dbMsg);
                     
                     if (crud == "delete") {                        
                         window.location.assign("/#/reports");
                     }
-
-                    // window.location.assign(`/#/reports/week/${report.week}`);
-                    // window.location.reload();
                 }
             ).catch(
                 err => {

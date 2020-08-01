@@ -41,10 +41,9 @@ export default {
     methods: {
         registerUser: function () {
             let request = new Request(
-                utils.localhostFullUrl() + "/register", {
+                utils.url + "/register", {
                 method: "POST",
                 headers: {
-                    // "Content-Type": "application/x-www-form-urlencoded",
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
@@ -63,12 +62,10 @@ export default {
                     this.successFromPost = data;
                     this.errorFromPost = false;
                 }
-                // console.log("success", this.successFromPost);
             })
             .catch(err => {
                 this.errorFromPost = utils.messages.error + " " + err;
                 this.successFromPost = false;
-                // console.log("error", this.errorFromPost);
             });
 
             this.clearForm();
@@ -79,6 +76,4 @@ export default {
         },
     },
 }
-// Todos:
-//
 </script>

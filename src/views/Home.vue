@@ -1,7 +1,7 @@
 <template>
-    <p>
-        {{ me }}
-    </p>
+    <div>
+        <p>{{ me }}</p>
+    </div>    
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
     name: "Home",
     data: function () {
         return {
-            me: null,
+            me: null
         };
     },
     mounted: function () {
@@ -21,7 +21,9 @@ export default {
     },
     methods: {
         getHome: function () {
-            fetch(Utils.localhostFullUrl()).then(
+            fetch(
+                Utils.url
+            ).then(
                 resp => resp.text(),
             ).then(
                 data => { this.me = data; }

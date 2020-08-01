@@ -17,9 +17,9 @@ import ReportsDetails from "./views/reports/Details.vue";
 
 
 function component() {
+    
     const element = document.createElement("div");
     element.id = "app";
-
     document.body.appendChild(element);
 
 

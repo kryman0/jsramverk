@@ -21,10 +21,8 @@
 
 <script>
 // Todo:
-// Kolla token fungerar på backend när crud är klar.
 
 import Utils from "../../models/utils";
-
 import AddReport from "./AddReport.vue";
 
 
@@ -47,8 +45,6 @@ export default {
     computed: {
         reports: {
             get: function () {
-                // this.getReports(this.$route.params.id);
-
                 return this.reportsObj;
             },
             set: function (value) {
@@ -60,7 +56,7 @@ export default {
         getReports() {
             // console.log("called?", week);
             let request = new Request(
-                Utils.localhostFullUrl() + "/reports",
+                Utils.url + "/reports",
             );
 
             fetch(
@@ -68,12 +64,11 @@ export default {
             ).then(
                 resp => resp.json()
             ).then(data => {
-                console.log("data:", data);
+                // console.log("data:", data);
 
                 this.email = data.email;
                 
                 return this.reports = data.rows;
-                // return data.rows;
             }).catch(err => console.log("Something went wrong:", err));
         }
     }
