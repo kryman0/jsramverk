@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="$route.params.id < 4">
+        <div v-if="$route.params.id < 5">
             <p>Reports for week {{ $route.params.id }}</p>
             <p><span v-html="readme"></span></p>
         </div>
@@ -97,7 +97,7 @@ export default {
             ).then(data => {
                 // console.log("data:", data);
 
-                if (week < 4) {
+                if (week < 5) {
                     // console.log(week);
                     return this.readme = marked(data, { pedantic: true });
                 }

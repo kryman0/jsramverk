@@ -14,7 +14,6 @@
             {{ errorFromPost || successFromPost }}
         </p>
     </div>
-
 </template>
 
 <script>
