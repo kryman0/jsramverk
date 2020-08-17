@@ -3,6 +3,7 @@
 		{
 			"path": "."
 		}
-    ],
-    "settings": {}
+	],
+	"remoteAuthority": "wsl+Debian",
+	"settings": {}
 }
