@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p><button v-on:click="isAddReportBtnClicked = true;">Add report</button></p>
+        <p><button class="btn-add-report" v-on:click="isAddReportBtnClicked = true;">Add report</button></p>
         <AddReport
             v-if="isAddReportBtnClicked"
             v-bind:report="{
