@@ -13,11 +13,13 @@ node_js: "14.5.0"
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y chromium-chromedriver
-  - chromedriver
+  - sudo apt-get install -y chromium-chromedriver  
 
 install: npm install
 
+before_script:
+  - screen -d -m -S chromedriver -s chromedriver
+
 script: 
-  - npm run test
-  - npm run test2
+- npm run test
+- npm run test2
