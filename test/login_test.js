@@ -10,14 +10,14 @@ test.describe("Path /login", function() {
 
 
     test.beforeEach(function(done) {
-        this.timeout(30000);
+        this.timeout(10000);
 
         browser = new webdriver.Builder()
-            // .Builder().withCapabilities(webdriver.Capabilities.firefox())
-            .forBrowser("firefox")
+            .withCapabilities(webdriver.Capabilities.chrome())
             .build();
         
-        browser.get("http://localhost:8080/#/login");
+        // browser.get("http://localhost:8080/#/login");
+        browser.get("https://kryman.me/#/login");
 
         done();
     });
