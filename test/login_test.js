@@ -15,10 +15,13 @@ test.describe("Path /login", function() {
 
         
         browser = new webdriver.Builder()
-            // .withCapabilities(webdriver.Capabilities.chrome())
+            .withCapabilities(webdriver.Capabilities.chrome())
             .forBrowser("chrome")
             .setChromeOptions(
-                new chrome.Options().headless().addArguments("--no-sandbox").addArguments("remote-debugging-port=9515")
+                new chrome.Options()
+                    .headless()
+                    .addArguments("--no-sandbox")
+                    .addArguments("remote-debugging-port=9515")
             )            
             .build();
         
