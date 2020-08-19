@@ -2,11 +2,12 @@
   "name": "kmom01",
   "version": "1.0.0",
   "description": "",
-  "scripts": {    
+  "scripts": {
+    "pretest": "bash npm run start",    
     "test": "SELENIUM_REMOTE_URL='http://localhost:9515' node_modules/mocha/bin/mocha test/**/*.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "start": "webpack-dev-server --config webpack.dev.js",
     "deploy": "npm run build && rsync -av dist/* deploy@kryman.me:/var/www/kryman.me/html/"
   },
   "keywords": [],
