@@ -1,6 +1,9 @@
 language: node_js
 node_js: "14.5.0"
 
+addons:
+  chrome: stable
+
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install curl
@@ -10,4 +13,4 @@ before_install:
 
 install: npm install
 
-script: npm run test2
+script: npm run test

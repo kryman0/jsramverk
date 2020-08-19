@@ -10,10 +10,11 @@ test.describe("Path /login", function() {
 
 
     test.beforeEach(function(done) {
-        this.timeout(10000);
+        this.timeout(30000);
 
-        browser = new webdriver
-            .Builder().withCapabilities(webdriver.Capabilities.firefox())
+        browser = new webdriver.Builder()
+            // .Builder().withCapabilities(webdriver.Capabilities.firefox())
+            .forBrowser("firefox")
             .build();
         
         browser.get("http://localhost:8080/#/login");
