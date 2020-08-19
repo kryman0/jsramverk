@@ -15,11 +15,12 @@ test.describe("Path /login", function() {
 
         
         browser = new webdriver.Builder()
+            // .withCapabilities(webdriver.Capabilities.chrome())
             .forBrowser("chrome")
             .setChromeOptions(
-                new chrome.Options().headless().addArguments("--no-sandbox")
-            )
-            // .withCapabilities(webdriver.Capabilities.chrome())
+                new chrome.Options().headless().addArguments("--no-sandbox").addArguments("--disable-gpu").addArguments("--remote-debugging-port=9515")
+                .addArguments("http://localhost")
+            )            
             .build();
         
         browser.get("http://localhost:8080/#/login");
