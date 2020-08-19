@@ -2,7 +2,7 @@
   "name": "kmom01",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
+  "scripts": {    
     "test": "SELENIUM_REMOTE_URL='http://localhost:9515' node_modules/mocha/bin/mocha test/**/*.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.prod.js",
