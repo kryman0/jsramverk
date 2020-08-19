@@ -17,7 +17,7 @@ test.describe("Path /login", function() {
         browser = new webdriver.Builder()
             .forBrowser("chrome")
             .setChromeOptions(
-                new chrome.Options().headless()
+                new chrome.Options().headless().addArguments("--no-sandbox")
             )
             .build();
             // .withCapabilities(webdriver.Capabilities.chrome())
