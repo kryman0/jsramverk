@@ -21,7 +21,7 @@ test.describe("Path /login", function() {
                 new chrome.Options()
                     .headless()
                     .addArguments("--no-sandbox")
-                    .addArguments("remote-debugging-port=9515")
+                    // .addArguments("remote-debugging-port=9515")
             )            
             .build();
         
