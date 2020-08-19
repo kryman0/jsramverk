@@ -17,4 +17,6 @@ before_install:
 
 install: npm install
 
-script: npm run test2
+script: 
+  - npm run test
+  - npm run test2
