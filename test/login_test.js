@@ -3,6 +3,7 @@
 const assert = require("assert").strict;
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
+const chrome = require("selenium-webdriver/chrome");
 
 
 test.describe("Path /login", function() {
@@ -12,9 +13,14 @@ test.describe("Path /login", function() {
     test.beforeEach(function(done) {
         this.timeout(10000);
 
+        
         browser = new webdriver.Builder()
-            .withCapabilities(webdriver.Capabilities.chrome())
+            .forBrowser("chrome")
+            .setChromeOptions(
+                new chrome.Options().headless()
+            )
             .build();
+            // .withCapabilities(webdriver.Capabilities.chrome())
         
         // browser.get("http://localhost:8080/#/login");
         browser.get("https://kryman.me/#/login");
