@@ -15,16 +15,16 @@ test.describe("Path /login", function() {
 
         
         browser = new webdriver.Builder()
-            // .withCapabilities(webdriver.Capabilities.chrome())
-            .forBrowser("chrome")
-            .setChromeOptions(
-                new chrome.Options().headless().addArguments("--no-sandbox").addArguments("--disable-gpu").addArguments("--remote-debugging-port=9515")
-                .addArguments("http://localhost")
-            )            
+            .withCapabilities(webdriver.Capabilities.chrome())
+            // .forBrowser("chrome")
+            // .setChromeOptions(
+            //     new chrome.Options().headless().addArguments("--no-sandbox").addArguments("--disable-gpu")
+            //     .addArguments("http://localhost")
+            // )            
             .build();
         
-        browser.get("http://localhost:8080/#/login");
-        // browser.get("https://kryman.me/#/login");
+        // browser.get("http://localhost:8080/#/login");
+        browser.get("https://kryman.me/#/login");
 
         done();
     });
