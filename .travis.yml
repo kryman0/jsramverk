@@ -16,10 +16,11 @@ addons:
 before_install:
   # - sudo apt-get update
   # - sudo apt-get install -y chromium-chromedriver
+  - npm install
   - npm run start &
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9515 https://kryman.me &
 
-install: npm install
+# install: npm install
 
 # before_script:
 #   - screen -d -m -S chromedriver -s chromedriver
