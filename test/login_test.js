@@ -19,11 +19,11 @@ test.describe("Path /login", function() {
             .setChromeOptions(
                 new chrome.Options().headless().addArguments("--no-sandbox")
             )
-            .build();
             // .withCapabilities(webdriver.Capabilities.chrome())
+            .build();
         
-        // browser.get("http://localhost:8080/#/login");
-        browser.get("https://kryman.me/#/login");
+        browser.get("http://localhost:8080/#/login");
+        // browser.get("https://kryman.me/#/login");
 
         done();
     });

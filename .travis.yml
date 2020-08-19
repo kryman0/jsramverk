@@ -1,8 +1,10 @@
+dist: xenial
+
 language: node_js
 node_js: "14.5.0"
 
-# addons:
-#   chrome: stable
+addons:
+  chrome: stable
 
 # before_install:
 #   - sudo apt-get update
@@ -12,13 +14,14 @@ node_js: "14.5.0"
 #   - sudo apt-get -y install nodejs
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install -y chromium-chromedriver  
+  # - sudo apt-get update
+  # - sudo apt-get install -y chromium-chromedriver
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9515 http://localhost:8080 &
 
 install: npm install
 
-before_script:
-  - screen -d -m -S chromedriver -s chromedriver
+# before_script:
+#   - screen -d -m -S chromedriver -s chromedriver
 
 script: 
 - npm run test
