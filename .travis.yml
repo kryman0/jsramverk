@@ -7,6 +7,6 @@ before_install:
   - sudo bash nodesource_setup.sh
   - sudo apt-get -y install nodejs
 
-script:
-  - npm install
-  - npm test
+install: npm install
+
+script: npm test
