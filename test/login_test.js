@@ -13,7 +13,7 @@ test.describe("Path /login", function() {
         this.timeout(10000);
 
         browser = new webdriver
-            .Builder().withCapabilities(webdriver.Capabilities.chrome())
+            .Builder().withCapabilities(webdriver.Capabilities.firefox())
             .build();
         
         browser.get("http://localhost:8080/#/login");
