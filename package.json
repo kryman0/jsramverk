@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "pretest": "bash npm run start",    
     "test": "SELENIUM_REMOTE_URL='http://localhost:9515' node_modules/mocha/bin/mocha test/**/*.js",
+    "test2": "node_modules/mocha/bin/mocha test/**/*.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --config webpack.dev.js",
