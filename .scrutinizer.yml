@@ -6,7 +6,7 @@ build:
     jsramverk-frontend:
       dependencies:
         override:
-          - "nvm install 14.0.0"      
+          - "nvm install v12.16.2"      
       # environment:
       #   node: "14.0.0"
       #   selenium:
