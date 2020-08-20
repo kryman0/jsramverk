@@ -4,10 +4,10 @@
 build:
   nodes:
     jsramverk-frontend:
+      dependencies:
+        before:
+          - "nvm install v14.5.0"      
       environment:
-        dependencies:
-          before:
-            - "nvm install v14.5.0"              
         node: "v14.5.0"
       #   selenium:
       #     browser_name: chrome
