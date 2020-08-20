@@ -1,0 +1,10 @@
+checks:
+  javascript: true
+
+build:
+  nodes:
+    jsramverk-frontend:
+      environment:
+        node: v14.5.0
+        selenium:
+          browser_name: chrome
