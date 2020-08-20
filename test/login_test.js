@@ -1,32 +1,31 @@
 "use strict";
 
+
 const assert = require("assert").strict;
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
+const TestUtils = require("../src/models/TestUtils.js");
 
 
 test.describe("Path /login", function() {
     let browser;
-
+    
 
     test.beforeEach(function(done) {
         this.timeout(10000);
 
         
         browser = new webdriver.Builder()
-            .withCapabilities(webdriver.Capabilities.chrome())
             .forBrowser("chrome")
             .setChromeOptions(
                 new chrome.Options()
                     .headless()
                     .addArguments("--no-sandbox")
-                    // .addArguments("remote-debugging-port=9515")
             )            
             .build();
         
-        // browser.get("http://localhost:8080/#/login");
-        browser.get("https://kryman.me/#/login");
+        browser.get(TestUtils.url + "/login");
 
         done();
     });
