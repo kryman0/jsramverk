@@ -8,7 +8,7 @@ build:
       #   before:
       #     - "nvm install 14.5.0"      
       environment:
-        node: "v10.14.2"
+        node: "v14.0.0"
       #   selenium:
       #     browser_name: chrome
       # tests:
