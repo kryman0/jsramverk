@@ -1,10 +1,13 @@
-checks:
-  javascript: true
+# checks:
+#   javascript: true
 
 build:
   nodes:
     jsramverk-frontend:
       environment:
+        dependencies:
+          before:
+            - "nvm install v14.5.0"              
         node: "v14.5.0"
       #   selenium:
       #     browser_name: chrome
