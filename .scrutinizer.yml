@@ -7,8 +7,8 @@ build:
       dependencies:
         override:
           - "nvm install 14.0.0"      
-      environment:
-        node: "14.0.0"
+      # environment:
+      #   node: "14.0.0"
       #   selenium:
       #     browser_name: chrome
       # tests:
