@@ -1,54 +1,53 @@
-// "use strict";
+"use strict";
 
 
-// const assert = require("assert").strict;
-// const test = require("selenium-webdriver/testing");
-// const webdriver = require("selenium-webdriver");
-// const uuid = require("uuid-random");
+const assert = require("assert").strict;
+const test = require("selenium-webdriver/testing");
+const webdriver = require("selenium-webdriver");
+const uuid = require("uuid-random");
+const TestUtils = require("../src/models/TestUtils.js");
 
 
-// test.describe("Path /register", function() {
-//     let browser;
+test.describe("Path /register", function() {
+    let browser;
     
-//     test.beforeEach(function(done) {
-//         this.timeout(10000);
+    test.beforeEach(function(done) {
+        this.timeout(10000);
         
-//         browser = new webdriver.Builder()
-//             .withCapabilities(webdriver.Capabilities.chrome())
-//             .build();
+        browser = TestUtils.getWebdriverWithPredefOpts();
 
-//         browser.get("http://localhost:8080/#/register");
+        browser.get(TestUtils.url + "/register");
         
-//         done();
-//     });
+        done();
+    });
 
-//     test.afterEach(function(done) {
-//         browser.quit();
+    test.afterEach(function(done) {
+        browser.quit();
         
-//         done();
-//     });
+        done();
+    });
 
-//     test.it("Create a new account", function(done) {
-//         let email = `${uuid()}@test.com`;
-//         let emailElInput = browser.findElement(webdriver.By.id("email"));
-//         emailElInput.sendKeys(email);
+    test.it("Create a new account", function(done) {
+        let email = `${uuid()}@test.com`;
+        let emailElInput = browser.findElement(webdriver.By.id("email"));
+        emailElInput.sendKeys(email);
 
-//         let passElInput = browser.findElement(webdriver.By.id("password"));
-//         passElInput.sendKeys("selenium");
+        let passElInput = browser.findElement(webdriver.By.id("password"));
+        passElInput.sendKeys("selenium");
 
-//         let formEl = browser.findElement(webdriver.By.className("form-layout"));
-//         formEl.submit();
+        let formEl = browser.findElement(webdriver.By.className("form-layout"));
+        formEl.submit();
         
-//         let msg = browser.wait(
-//             webdriver.until.elementLocated(
-//                 webdriver.By.className("success-message")
-//             )
-//         , 5000);
+        let msg = browser.wait(
+            webdriver.until.elementLocated(
+                webdriver.By.className("success-message")
+            )
+        , 5000);
         
-//         msg.getText().then(text => {
-//             assert.strictEqual(text, "Successfully registered a new user.");
-//         });
+        msg.getText().then(text => {
+            assert.strictEqual(text, "Successfully registered a new user.");
+        });
         
-//         done();
-//     });
-// });
+        done();
+    });
+});

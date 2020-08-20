@@ -4,7 +4,6 @@
 const assert = require("assert").strict;
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
-const chrome = require("selenium-webdriver/chrome");
 const TestUtils = require("../src/models/TestUtils.js");
 
 
@@ -16,14 +15,7 @@ test.describe("Path /login", function() {
         this.timeout(10000);
 
         
-        browser = new webdriver.Builder()
-            .forBrowser("chrome")
-            .setChromeOptions(
-                new chrome.Options()
-                    .headless()
-                    .addArguments("--no-sandbox")
-            )            
-            .build();
+        browser = TestUtils.getWebdriverWithPredefOpts();
         
         browser.get(TestUtils.url + "/login");
 
