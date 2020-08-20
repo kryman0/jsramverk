@@ -25,8 +25,7 @@ test.describe("Path /login", function() {
             )            
             .build();
         
-        // browser.get(TestUtils.url + "/login");
-        browser.get("http://localhost:8080/#/login");
+        browser.get(TestUtils.url + "/login");
 
         done();
     });
