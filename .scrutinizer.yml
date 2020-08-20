@@ -5,6 +5,13 @@ build:
   nodes:
     jsramverk-frontend:
       environment:
-        node: v14.5.0
+        node: v14
         selenium:
           browser_name: chrome
+      tests:
+        override:
+          -
+            command: npm run test-scrutinizer
+            coverage:
+              file: build/coverage/clover.xml
+              format: clover

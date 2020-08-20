@@ -1,0 +1,28 @@
+{
+    "all": true,
+
+    "extension": [
+        ".vue"
+    ],
+
+    "reporter": [
+        "html",
+        "text",
+        "clover"
+    ],
+    
+    "report-dir": "build/coverage",
+    "temp-dir": "build/.nyc_output",
+    
+    "include": [
+        "src/**",
+        "test/**"
+    ],
+    
+    "exclude": [
+        "build/",
+        "dist/",
+        "public",
+        "src/css/" 
+    ]
+}
