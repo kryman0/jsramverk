@@ -9,11 +9,12 @@ build:
       dependencies:
         override:
           - "nvm install v13.13.0"
-          - chromedriver &          
-      tests:
-        override:
+          - chromedriver &
           - npm install
-          - npm run test-scrutinizer
+      tests:
+        override:    
+          - 
+            command: npm run test-scrutinizer
             coverage:
               file: build/coverage/clover.xml
               format: clover
