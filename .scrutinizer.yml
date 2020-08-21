@@ -6,14 +6,16 @@ build:
     jsramverk-frontend:
       dependencies:
         override:
-          - "nvm install v13.13.0"      
+          - "nvm install v13.13.0"
       environment:
         selenium:
           browser_name: chrome
       tests:
         override:
           -
-            command: npm run test-scrutinizer
-            coverage:
-              file: build/coverage/clover.xml
-              format: clover
+            commands: 
+              - npm run test-scrutinizer
+              - npm install
+                coverage:
+                  file: build/coverage/clover.xml
+                  format: clover
