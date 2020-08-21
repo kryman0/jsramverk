@@ -8,9 +8,11 @@ build:
         override:
           - "nvm install v13.13.0"      
       tests:
-        analysis:
-          override:
-            - js-scrutinizer-run
+        override:
+          -
+            analysis:
+              override:
+                - js-scrutinizer-run
       # environment:
       #   node: "14.0.0"
       #   selenium:
