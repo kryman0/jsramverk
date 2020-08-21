@@ -14,8 +14,8 @@ build:
         override:
           -
             commands: 
-              - npm run test-scrutinizer
               - npm install
+              - npm run test-scrutinizer
                 coverage:
                   file: build/coverage/clover.xml
                   format: clover
