@@ -7,20 +7,13 @@ build:
       dependencies:
         override:
           - "nvm install v13.13.0"      
-    analysis:
-      project_setup:
-        override: true
+      environment:
+        selenium:
+          browser_name: chrome
       tests:
-        override: 
-          - js-scrutinizer-run
-      # environment:
-      #   node: "14.0.0"
-      #   selenium:
-      #     browser_name: chrome
-      # tests:
-      #   override:
-      #     -
-      #       command: npm run test-scrutinizer
-      #       coverage:
-      #         file: build/coverage/clover.xml
-      #         format: clover
+        override:
+          -
+            command: npm run test-scrutinizer
+            coverage:
+              file: build/coverage/clover.xml
+              format: clover
