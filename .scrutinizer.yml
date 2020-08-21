@@ -9,8 +9,8 @@ build:
       dependencies:
         override:
           - "nvm install v13.13.0"
-          - chromedriver &
           - npm install
+          - chromedriver &
       tests:
         override:    
           - 
