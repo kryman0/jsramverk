@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "SELENIUM_BROWSER='chrome' SELENIUM_REMOTE_URL='http://localhost:9515' node_modules/mocha/bin/mocha test/**/*.js",
-    "test-scrutinizer": "SELENIUM_BROWSER='chrome' SELENIUM_REMOTE_URL='http://localhost:4444' node_modules/mocha/bin/mocha test/**/*.js",
+    "test-scrutinizer": "SELENIUM_BROWSER='chrome' SELENIUM_REMOTE_URL='http://localhost:9515' node_modules/mocha/bin/mocha test/**/*.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --config webpack.dev.js",
