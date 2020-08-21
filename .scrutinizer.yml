@@ -12,10 +12,8 @@ build:
           browser_name: chrome
       tests:
         override:
-          -
-            commands: 
-              - npm install
-              - npm run test-scrutinizer
-                coverage:
-                  file: build/coverage/clover.xml
-                  format: clover
+          - npm install
+          - npm run test-scrutinizer
+            coverage:
+              file: build/coverage/clover.xml
+              format: clover
