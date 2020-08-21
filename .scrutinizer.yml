@@ -1,5 +1,5 @@
-# checks:
-#   javascript: true
+checks:
+  javascript: true
 
 build:
   nodes:
@@ -8,12 +8,11 @@ build:
         override:
           - "nvm install v13.13.0"
       environment:
-        selenium:
-          browser_name: chrome
+        selenium: true
       tests:
         override:
-          - npm install
-          - npm run test
+          # - npm install
+          - npm run test-scrutinizer
             # coverage:
             #   file: build/coverage/clover.xml
             #   format: clover
