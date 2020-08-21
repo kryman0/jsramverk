@@ -3,16 +3,19 @@ checks:
 
 build:
   nodes:
+    functional-tests:
+      environment:
+        selenium: true
     jsramverk-frontend:
       dependencies:
         override:
           - "nvm install v13.13.0"
-      environment:
-        selenium: true
-      tests:
-        override:
           - npm install
-          - npm run test-scrutinizer
+          - npm run test-scrutinizer 
+      # tests:
+      #   override:
+      #     - npm install
+      #     - npm run test-scrutinizer
             # coverage:
             #   file: build/coverage/clover.xml
             #   format: clover
