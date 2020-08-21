@@ -7,12 +7,12 @@ build:
       dependencies:
         override:
           - "nvm install v13.13.0"      
+    analysis:
+      project_setup:
+        override: true
       tests:
-        override:
-          -
-            analysis:
-              override:
-                - js-scrutinizer-run
+        override: 
+          - js-scrutinizer-run
       # environment:
       #   node: "14.0.0"
       #   selenium:
