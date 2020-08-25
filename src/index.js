@@ -1,3 +1,8 @@
+// // Socket.io-client
+// import io from "socket.io-client";
+// const socket = io("http://localhost:5000");
+
+
 // CSS
 import "./css/style.css";
 
@@ -9,6 +14,7 @@ import VueRouter from "vue-router";
 
 // Views
 import App from "./App.vue";
+import Chat from "./views/chat/Chat.vue";
 import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
@@ -16,19 +22,27 @@ import Reports from "./views/reports/Reports.vue";
 import ReportsDetails from "./views/reports/Details.vue";
 
 
-function component() {
-    
+function component() {    
     const element = document.createElement("div");
     element.id = "app";
     document.body.appendChild(element);
 
+    // socket.on("connect", () => {
+    //     console.info("Connected");
+    // });
 
+    // socket.on("disconnect", () => {
+    //     console.info("Disconnected");
+    // });
+
+    
     Vue.use(VueRouter);
 
 
     const router = new VueRouter({
         routes: [
             { path: "/", component: Home },
+            { path: "/chat", component: Chat },
             { path: "/register", component: Register },
             { path: "/login", component: Login },
             { path: "/reports", component: Reports },

@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "marked": "^1.1.0",
+    "socket.io-client": "^2.3.0",
     "vue-router": "^3.3.2"
   }
 }
