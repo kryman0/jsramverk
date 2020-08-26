@@ -1,8 +1,3 @@
-// // Socket.io-client
-// import io from "socket.io-client";
-// const socket = io("http://localhost:5000");
-
-
 // CSS
 import "./css/style.css";
 
@@ -27,15 +22,7 @@ function component() {
     element.id = "app";
     document.body.appendChild(element);
 
-    // socket.on("connect", () => {
-    //     console.info("Connected");
-    // });
 
-    // socket.on("disconnect", () => {
-    //     console.info("Disconnected");
-    // });
-
-    
     Vue.use(VueRouter);
 
 
