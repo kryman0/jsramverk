@@ -59,36 +59,6 @@ export default {
         socket.on("new user", (data) => {
             this.room = data;
         });
-        
-        
-        // socket.on("connect", () => {
-        //     console.log("Connected");
-            
-        //     socket.on("welcome msg", (data) => {
-        //         this.welcomeMessage = data;         
-        //     });
-
-        //     socket.on("intro room msg", (data) => {
-        //         this.room = data;
-        //     });
-
-        //     // socket.on("chat msg", (data) => {
-        //     //     // let p = document.createElement("p");
-        //     //     // p.textContent = data;
-        //     //     // msgs.appendChild(p);
-
-        //     //     // this.messages = data;
-        //     // });
-
-        //     socket.on("disconnect", () => {
-        //         console.log("Disconnected");
-        //     });
-            
-        //     // socket.on("intro room msg", (data) => {
-        //     //     console.log("intro room", data);
-        //     //     this.room = data;
-        //     // });
-        // });        
     },
     mounted: function() {
         this.$nextTick(function() {
@@ -134,16 +104,6 @@ export default {
                 return this.emptyMsgAlert = "Error! Empty message.";
             }
             
-
-            // if (this.room === null) {
-            //     socket.emit("new user", this.setup.nickname);
-
-            //     socket.on("new user", (data) => {
-            //         console.log(data);
-            //         this.room = data;
-            //     });
-            // }
-
             let messageObj = {
                 id: socket.id + ++this.numberOfMsgs,
                 nickname: this.setup.nickname,
