@@ -27,11 +27,11 @@
 </template>
 
 <script>
-// Todo: origins
+import utils from "../../models/utils.js";
 
 // Socket.io-client
 import io from "socket.io-client";
-const socket = io("http://localhost:5000");
+const socket = io(utils.url);
 
 
 export default {
