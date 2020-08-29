@@ -9,7 +9,7 @@ import VueRouter from "vue-router";
 
 // Views
 import App from "./App.vue";
-import Chat from "./views/chat/Chat.vue";
+import Chat from "./views/chat/Setup.vue";
 import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";

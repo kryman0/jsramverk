@@ -66,3 +66,20 @@ label {
     width: 70px;
     cursor: pointer;
 }
+
+.chat-setup-nickname input, input[type="submit"] {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 200px;
+    margin: 0;
+}
+
+.chat-setup-nickname label {
+    margin: 30px 0 5px;
+}
+
+.chat-setup-nickname input[type="submit"] {
+    display: block;
+    width: 200px;
+    margin: 10px 0;
+}
