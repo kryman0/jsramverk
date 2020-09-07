@@ -23,6 +23,8 @@
             
             <p>{{ emptyMsgAlert }}</p>
         </div>
+
+        <div id="testing" v-on:click="saveMsgs"></div>
     </div>
 </template>
 
@@ -49,7 +51,7 @@ export default {
             msgs: [],
             numberOfMsgs: 0,
             room: null,
-            welcomeMsgFromSckt: "",
+            welcomeMsgFromSckt: ""
         }
     },
     
@@ -59,6 +61,9 @@ export default {
         socket.on("new user", (data) => {
             this.room = data;
         });
+
+        // this.saveMsgs();
+        this.getMsgs();
     },
     mounted: function() {
         this.$nextTick(function() {
@@ -116,6 +121,80 @@ export default {
             this.msg = "", this.emptyMsgAlert = "";
             
             this.isFirstMsgCreated = true;
+        },
+        saveMsgs: function() {
+            let messages = [
+                {
+                    // _id: 1,
+                    nickname: "kalle",
+                    date: new Date().toLocaleDateString(),
+                    mess: "Hello, kalle here"
+                },
+                {
+                    // _id: 2,
+                    nickname: "sven",
+                    date: "2020-9-2 12:39:39",
+                    mess: "How are you?"
+                },
+                {
+                    // _id: 3,
+                    nickname: "sven",
+                    date: new Date().toLocaleString(),
+                    mess: "Where do you live?"
+                },
+                {
+                    // _id: 4,
+                    nickname: "sven",
+                    date: "2019-12-4 08:07:06",
+                    mess: "december month"
+                }
+            ];
+
+            // console.log(messages);
+
+            fetch(
+                utils.url + "/chat", 
+                {
+                    method: "POST",                    
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ messages })
+                }
+            ).then(                
+                resp => resp.json()
+            ).then(
+                data => console.log("data", data)
+            ).catch(
+                error => console.log(error)
+            );
+        },
+        getMsgs: function() {
+            // let obj = JSON.stringify({
+            //     nickname: this.queryNickname,
+            //     date: this.queryDate,
+            //     mess: this.queryMessage,
+            // });
+            
+            let obj = JSON.stringify({
+                nickname: "sven",
+                date: "",
+                mess: "",
+            });
+                        
+            fetch(
+                utils.url + `/chat/${obj}`, 
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                },
+            ).then(
+                resp => {
+                    console.log(resp.json());
+                }
+            ).catch(error => console.log(error));
         }
     }
 }
