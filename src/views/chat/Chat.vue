@@ -14,7 +14,11 @@
                     {{ message.date }}
                     {{ message.mess }}
                 </p>
-            </div>        
+            </div>
+
+            <div>
+                <button v-on:click="saveMsgs">Save messages</button>
+            </div>
         </div>
 
         <div>
@@ -24,7 +28,18 @@
             <p>{{ emptyMsgAlert }}</p>
         </div>
 
-        <div id="testing" v-on:click="saveMsgs"></div>
+        <div id="testing" class="chat-setup-nickname">
+            <label for="query-nickname">Nickname</label>
+            <input id="query-nickname" type="text" v-model="queryNickname" />
+
+            <label for="query-date">Date</label>
+            <input id="query-date" type="date" v-model="queryDate" />
+
+            <label for="query-message">Message</label>
+            <input id="query-message" type="text" v-model="queryMessage" />
+
+            <input type="submit" value="Search" v-on:click="getMsgs" />
+        </div>
     </div>
 </template>
 
@@ -51,7 +66,12 @@ export default {
             msgs: [],
             numberOfMsgs: 0,
             room: null,
-            welcomeMsgFromSckt: ""
+            welcomeMsgFromSckt: "",    
+            
+            // Query params to search for in mongodb.
+            queryNickname: "",
+            queryDate: "",
+            queryMessage: ""
         }
     },
     
@@ -62,8 +82,8 @@ export default {
             this.room = data;
         });
 
-        // this.saveMsgs();
-        this.getMsgs();
+        this.saveMsgs();
+        // this.getMsgs();
     },
     mounted: function() {
         this.$nextTick(function() {
@@ -109,10 +129,23 @@ export default {
                 return this.emptyMsgAlert = "Error! Empty message.";
             }
             
+            
+            let dTFormatLocales = "sv-SE-u-ca-iso8601-hc-h24";
+            let dTFormatOptions = {
+                dateStyle: "short",
+                timeStyle: "medium"
+            };
+
+            const now = new Intl.DateTimeFormat(
+                dTFormatLocales,
+                dTFormatOptions
+            ).format(new Date());
+            
+            
             let messageObj = {
                 id: socket.id + ++this.numberOfMsgs,
                 nickname: this.setup.nickname,
-                date: new Date().toLocaleString(),
+                date: now,
                 mess: this.msg
             };
             
@@ -128,25 +161,19 @@ export default {
                     // _id: 1,
                     nickname: "kalle",
                     date: new Date().toLocaleDateString(),
-                    mess: "Hello, kalle here"
+                    message: "Hello, kalle here"
                 },
                 {
                     // _id: 2,
                     nickname: "sven",
                     date: "2020-9-2 12:39:39",
-                    mess: "How are you?"
+                    message: "How are you?"
                 },
                 {
                     // _id: 3,
-                    nickname: "sven",
-                    date: new Date().toLocaleString(),
-                    mess: "Where do you live?"
-                },
-                {
-                    // _id: 4,
-                    nickname: "sven",
-                    date: "2019-12-4 08:07:06",
-                    mess: "december month"
+                    nickname: "tommy",
+                    date: new Date(),
+                    message: "Tommy is from Sweden."
                 }
             ];
 
@@ -160,11 +187,12 @@ export default {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ messages })
+                    // body: messages
                 }
             ).then(                
-                resp => resp.json()
-            ).then(
-                data => console.log("data", data)
+                resp => {
+                    console.log(resp.json());
+                }
             ).catch(
                 error => console.log(error)
             );
@@ -177,9 +205,9 @@ export default {
             // });
             
             let obj = JSON.stringify({
-                nickname: "sven",
-                date: "",
-                mess: "",
+                nickname: "tommy",
+                date: "2020",
+                message: "sweden"
             });
                         
             fetch(
@@ -191,10 +219,10 @@ export default {
                     }
                 },
             ).then(
-                resp => {
-                    console.log(resp.json());
-                }
-            ).catch(error => console.log(error));
+                resp => console.log(resp.json())
+            ).catch(
+                error => console.log(error)
+            );
         }
     }
 }
