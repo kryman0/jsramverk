@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .form-layout {
         width: 500px;
         margin: 50px 0;
@@ -82,4 +86,19 @@ label {
     display: block;
     width: 200px;
     margin: 10px 0;
+}
+
+.chat-query {
+    width: 600px;
+    margin: 20px 0;
+}
+
+.chat-query input {
+    display: block;
+    width: 180px;
+}
+
+.chat-query input[type="submit"] {
+    display: block;
+    margin: 30px 0 0;
 }

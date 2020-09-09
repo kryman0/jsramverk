@@ -13,7 +13,7 @@
         </div>
 
         <Chat
-            v-if="!isNicknameSet"
+            v-if="isNicknameSet"
             v-bind:setup="{
                 nickname: nickname
             }"

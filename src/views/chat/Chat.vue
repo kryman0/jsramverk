@@ -4,41 +4,63 @@
             <p>{{ welcomeMessage }} {{ setup.nickname }}</p>
         </div>
 
-        <div v-if="isFirstMsgCreated = true">
+        <div v-if="isFirstMsgCreated">
             <p>{{ room }}</p>            
             
             <div class="show-chat-messages">
-                <!-- <p>{{ messages }}</p> -->
-                <p v-for="message in messages" v-bind:key="message.id">
-                    {{ message.nickname }}
-                    {{ message.date }}
-                    {{ message.mess }}
+                <p v-for="msg in messages" v-bind:key="msg.id">
+                    {{ msg.nickname }}
+                    {{ msg.date }}
+                    {{ msg.message }}
                 </p>
             </div>
 
             <div>
-                <button v-on:click="saveMsgs">Save messages</button>
+                <input
+                    style="display: inline-block; width: 200px; margin: 20px 5px 20px 0;"
+                    type="button"
+                    value="Save messages"
+                    v-on:click="saveMsgs"
+                />                
+                <span>{{ dbMessagesSavedAlert }}</span>
             </div>
         </div>
 
         <div>
             <label for="message">Message:</label>
-            <input id="message" type="text" v-on:keyup.enter="sendMsg" v-model="msg" />
-            
+            <textarea style="margin-top: 5px" id="message" v-on:keyup.enter="sendMsg" v-model="msg"></textarea>            
             <p>{{ emptyMsgAlert }}</p>
         </div>
 
-        <div id="testing" class="chat-setup-nickname">
-            <label for="query-nickname">Nickname</label>
-            <input id="query-nickname" type="text" v-model="queryNickname" />
+        <div class="chat-query">
+            <fieldset>
+                <legend>Search for messages</legend>
+            
+                <label for="query-nickname">Nickname</label>
+                <input id="query-nickname" type="text" v-model="queryNickname" />
 
-            <label for="query-date">Date</label>
-            <input id="query-date" type="date" v-model="queryDate" />
+                <label for="query-date">Date</label>
+                <input id="query-date" type="text" v-model="queryDate" />
+                <p>
+                    Valid formats: 2020, 2020-09-09, 2020-09-09 15:10:20, 15:10:20, 09-09, etc.
+                    <br />
+                    Accepts regex: ^, [], etc.
+                </p>
 
-            <label for="query-message">Message</label>
-            <input id="query-message" type="text" v-model="queryMessage" />
+                <label for="query-message">Message</label>
+                <input id="query-message" type="text" v-model="queryMessage" />
 
-            <input type="submit" value="Search" v-on:click="getMsgs" />
+                <input type="submit" value="Search" v-on:click="getMsgs" />
+            </fieldset>
+        </div>
+
+        <div v-if="hasASearchBeenMade">
+            <p v-for="msg in dbMessages" v-bind:key="msg._id">
+                {{ msg.nickname }}
+                {{ msg.date }}
+                {{ msg.message }}
+            </p>
+            <p>{{ NoResultsFound }}</p>
         </div>
     </div>
 </template>
@@ -61,17 +83,21 @@ export default {
     data: function() {
         return {
             emptyMsgAlert: null,
+            dbMessages: [],
+            dbMessagesSavedAlert: "",
+            hasASearchBeenMade: false,
             isFirstMsgCreated: false,
             msg: "",
             msgs: [],
+            NoResultsFound: "",
             numberOfMsgs: 0,
             room: null,
             welcomeMsgFromSckt: "",    
             
             // Query params to search for in mongodb.
-            queryNickname: "",
             queryDate: "",
-            queryMessage: ""
+            queryMessage: "",
+            queryNickname: "",
         }
     },
     
@@ -82,7 +108,7 @@ export default {
             this.room = data;
         });
 
-        this.saveMsgs();
+        // this.saveMsgs();
         // this.getMsgs();
     },
     mounted: function() {
@@ -146,7 +172,7 @@ export default {
                 id: socket.id + ++this.numberOfMsgs,
                 nickname: this.setup.nickname,
                 date: now,
-                mess: this.msg
+                message: this.msg
             };
             
             socket.emit("chat msg", messageObj);
@@ -156,28 +182,30 @@ export default {
             this.isFirstMsgCreated = true;
         },
         saveMsgs: function() {
-            let messages = [
-                {
-                    // _id: 1,
-                    nickname: "kalle",
-                    date: new Date().toLocaleDateString(),
-                    message: "Hello, kalle here"
-                },
-                {
-                    // _id: 2,
-                    nickname: "sven",
-                    date: "2020-9-2 12:39:39",
-                    message: "How are you?"
-                },
-                {
-                    // _id: 3,
-                    nickname: "tommy",
-                    date: new Date(),
-                    message: "Tommy is from Sweden."
-                }
-            ];
+            // let messages = [
+            //     {
+            //         // _id: 1,
+            //         nickname: "kalle",
+            //         date: new Date().toLocaleDateString(),
+            //         message: "Hello, kalle here"
+            //     },
+            //     {
+            //         // _id: 2,
+            //         nickname: "sven",
+            //         date: "2020-9-2 12:39:39",
+            //         message: "How are you?"
+            //     },
+            //     {
+            //         // _id: 3,
+            //         nickname: "tommy",
+            //         date: new Date(),
+            //         message: "Tommy is from Sweden."
+            //     }
+            // ];
 
             // console.log(messages);
+            
+            let messages = this.messages;
 
             fetch(
                 utils.url + "/chat", 
@@ -187,29 +215,26 @@ export default {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ messages })
-                    // body: messages
                 }
             ).then(                
-                resp => {
-                    console.log(resp.json());
-                }
-            ).catch(
+                resp => resp.json()
+            ).then(data => {
+                this.dbMessagesSavedAlert = data;
+                
+                setTimeout(() => {
+                    this.dbMessagesSavedAlert = "";
+                }, 3000);
+            }).catch(
                 error => console.log(error)
             );
         },
         getMsgs: function() {
-            // let obj = JSON.stringify({
-            //     nickname: this.queryNickname,
-            //     date: this.queryDate,
-            //     mess: this.queryMessage,
-            // });
-            
             let obj = JSON.stringify({
-                nickname: "tommy",
-                date: "2020",
-                message: "sweden"
+                nickname: this.queryNickname,
+                date: this.queryDate,
+                message: this.queryMessage,
             });
-                        
+            
             fetch(
                 utils.url + `/chat/${obj}`, 
                 {
@@ -219,10 +244,31 @@ export default {
                     }
                 },
             ).then(
-                resp => console.log(resp.json())
+                resp => resp.json()
+            ).then(
+                data => {
+                    if (data.length < 1) {
+                        this.NoResultsFound = "No results have been found!";
+                    } else {
+                        this.NoResultsFound = "";
+                    }
+                    
+                    this.dbMessages = data;
+
+                    this.hasASearchBeenMade = true;
+
+                    this.clearSearchForm();
+                }
             ).catch(
                 error => console.log(error)
             );
+        },
+        clearSearchForm: function() {
+            [
+                this.queryNickname,
+                this.queryDate,
+                this.queryMessage
+            ] = [ "", "", "" ];            
         }
     }
 }
