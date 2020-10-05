@@ -4,6 +4,11 @@
             <p>Reports for week {{ $route.params.id }}</p>
             <p><span v-html="readme"></span></p>
         </div>
+
+        <div v-else-if="$route.params.id == 10">
+            <p>Reports for week {{ $route.params.id }}</p>
+            <p><span v-html="readme"></span></p>
+        </div>
         
         <div v-else>
             <p>User: {{ report.user_email }}</p>
@@ -100,6 +105,8 @@ export default {
                 if (week < 5) {
                     // console.log(week);
                     return this.readme = marked(data, { pedantic: true });
+                } else if (week == 10) {
+                    return this.readme = marked(data, { pedantic: true} );
                 }
                 
                 return this.report = data;
