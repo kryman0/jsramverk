@@ -10,7 +10,9 @@ input {
     padding: 8px 10px;
     background-color: #217575;
     color: white;
+    border: none;
     border-radius: 5px;
+    outline: none;
 }
 
 input[type="submit"] {
@@ -19,7 +21,9 @@ input[type="submit"] {
     padding: 8px 10px;
     background-color: #45F5F5;
     color: #334547;
+    border: none;
     cursor: pointer;
+    outline: none;
 }
 
 input[type="submit"]:hover {
