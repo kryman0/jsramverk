@@ -1,35 +1,43 @@
+@import "./navigators.css";
+@import "./forms.css";
+@import "./fonts.css";
+
+
 * {
     box-sizing: border-box;
+    font-size: 16px;
 }
 
-.form-layout {
-        width: 500px;
-        margin: 50px 0;
+
+body {
+    width: 100%;
+    margin: 0 auto;
 }
 
-input {
-    display: block;
-    width: 150px;
-    margin: 5px 0;
-    padding: 5px;
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Piazzolla', serif;
 }
 
-input[type="submit"] {
-    width: 164px;
-    margin-top: 20px;
-    cursor: pointer;
+h1 {
+    font-size: 3rem;
 }
 
-textarea {
-    width: 300px;
-    height: 40px;
-    padding: 5px;
+h2 {
+    font-size: 2.5rem;
 }
 
-label {
-    display: block;
-    margin: 10px 0 0;
+h3 {
+    font-size: 2rem;
 }
+
+
+.container-wrapper {
+    max-width: 600px;
+    margin-left: 400px;
+    word-break: break-word;
+}
+
 
 .success-message {
     color: green;
@@ -39,9 +47,6 @@ label {
     color: red;
 }
 
-.top-navbar-remove-element {
-    display: none;
-}
 
 .show-inline-element {
     display: inline;
@@ -71,7 +76,7 @@ label {
     cursor: pointer;
 }
 
-.chat-setup-nickname input, input[type="submit"] {
+/* .chat-setup-nickname input {
     box-sizing: border-box;
     display: inline-block;
     width: 200px;
@@ -80,20 +85,20 @@ label {
 
 .chat-setup-nickname label {
     margin: 30px 0 5px;
-}
+} */
 
-.chat-setup-nickname input[type="submit"] {
+/* .chat-setup-nickname input[type="submit"] {
     display: block;
     width: 200px;
     margin: 10px 0;
-}
+} */
 
-.chat-query {
+/* .chat-query {
     width: 600px;
     margin: 20px 0;
-}
+} */
 
-.chat-query input {
+/* .chat-query input {
     display: block;
     width: 180px;
 }
@@ -101,4 +106,4 @@ label {
 .chat-query input[type="submit"] {
     display: block;
     margin: 30px 0 0;
-}
+} */

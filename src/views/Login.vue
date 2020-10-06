@@ -1,14 +1,15 @@
 <template>
-    <div>
+    <div class="container-wrapper">
+        
+        <h1>Login</h1>
+
         <form class="form-layout" v-on:submit.prevent="login">
-            <fieldset>
-                <legend>Login</legend>
-                    <label for="email">E-mail</label>
-                    <input id="email" name="email" type="email" v-model="email" />
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" v-model="password" />
-                    <input type="submit" value="Login" />
-            </fieldset>
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" v-model="email" />
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" v-model="password" />
+            <input type="submit" value="Login" />
+            
             <p v-bind:class="message">
                 {{ errorFromPost || successFromPost }}
             </p>

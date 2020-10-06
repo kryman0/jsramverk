@@ -1,6 +1,9 @@
 <template>
-    <div>        
+    <div class="container-wrapper">
+        
         <div class="chat-setup-nickname" v-if="!isNicknameSet">
+            <h1>Setup</h1>
+            
             <label for="nickname">Please choose your Nickname:</label>
             <input 
                 style="display: inline;" id="nickname" type="text" 

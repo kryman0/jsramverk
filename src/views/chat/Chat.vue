@@ -1,7 +1,7 @@
 <template>
     <div class="chat-box">
         <div>
-            <p>{{ welcomeMessage }} {{ setup.nickname }}</p>
+            <h1>{{ welcomeMessage }} {{ setup.nickname }}</h1>
         </div>
 
         <div v-if="isFirstMsgCreated">
@@ -33,25 +33,23 @@
         </div>
 
         <div class="chat-query">
-            <fieldset>
-                <legend>Search for messages</legend>
+            <h2>Search for messages</h2>
             
-                <label for="query-nickname">Nickname</label>
-                <input id="query-nickname" type="text" v-model="queryNickname" />
+            <label for="query-nickname">Nickname</label>
+            <input id="query-nickname" type="text" v-model="queryNickname" />
 
-                <label for="query-date">Date</label>
-                <input id="query-date" type="text" v-model="queryDate" />
-                <p>
-                    Valid formats: 2020, 2020-09-09, 2020-09-09 15:10:20, 15:10:20, 09-09, etc.
-                    <br />
-                    Accepts regex: ^, [], etc.
-                </p>
+            <label for="query-date">Date</label>
+            <input id="query-date" type="text" v-model="queryDate" />
+            <p>
+                Valid formats: 2020, 2020-09-09, 2020-09-09 15:10:20, 15:10:20, 09-09, etc.
+                <br />
+                Accepts regex: ^, [], etc.
+            </p>
 
-                <label for="query-message">Message</label>
-                <input id="query-message" type="text" v-model="queryMessage" />
+            <label for="query-message">Message</label>
+            <input id="query-message" type="text" v-model="queryMessage" />
 
-                <input type="submit" value="Search" v-on:click="getMsgs" />
-            </fieldset>
+            <input type="submit" value="Search" v-on:click="getMsgs" />
         </div>
 
         <div v-if="hasASearchBeenMade">

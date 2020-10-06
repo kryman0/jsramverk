@@ -1,12 +1,7 @@
 <template>
-    <div>
-        <div v-if="$route.params.id < 5">
-            <p>Reports for week {{ $route.params.id }}</p>
-            <p><span v-html="readme"></span></p>
-        </div>
-
-        <div v-else-if="$route.params.id == 10">
-            <p>Reports for week {{ $route.params.id }}</p>
+    <div class="container-wrapper">
+        <div v-if="$route.params.id < 5 || $route.params.id == 10">
+            <h1>Reports for week {{ $route.params.id }}</h1>
             <p><span v-html="readme"></span></p>
         </div>
         
@@ -102,8 +97,7 @@ export default {
             ).then(data => {
                 // console.log("data:", data);
 
-                if (week < 5) {
-                    // console.log(week);
+                if (week < 5) {                    
                     return this.readme = marked(data, { pedantic: true });
                 } else if (week == 10) {
                     return this.readme = marked(data, { pedantic: true} );

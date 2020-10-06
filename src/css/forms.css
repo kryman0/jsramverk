@@ -1,0 +1,45 @@
+.form-layout {
+    width: 500px;
+    margin: 50px 0;
+}
+
+input {
+    display: block;
+    width: 200px;
+    margin: 5px 0;
+    padding: 8px 10px;
+    background-color: #217575;
+    color: white;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    width: 200px;
+    margin-top: 20px;
+    padding: 8px 10px;
+    background-color: #45F5F5;
+    color: #334547;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #134242;
+    transition: background-color .6s ease .3s;
+    color: aqua;
+}
+
+
+textarea {
+    width: 400px;
+    height: 80px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: #8FF7F7;
+    color: black;
+}
+
+
+label {
+    display: block;
+    margin: 10px 0 0;
+}

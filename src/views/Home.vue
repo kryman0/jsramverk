@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <p>{{ me }}</p>
+    <div class="container-wrapper">
+        <h1>Welcome!</h1>
+
+        <p>{{ me }}</p>        
     </div>    
 </template>
 
@@ -32,9 +34,3 @@ export default {
     }
 };
 </script>
-
-<style scoped>
-    p {
-        background-color: aqua;
-    }
-</style>
