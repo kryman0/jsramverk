@@ -12,6 +12,8 @@
 body {
     width: 100%;
     margin: 0 auto;
+    background-color: hsla(180deg, 50%, 50%, 10%);
+    font-family: 'Ubuntu', sans-serif;    
 }
 
 
@@ -32,10 +34,37 @@ h3 {
 }
 
 
+p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+
+a:link {
+    color: #217575;
+    text-decoration-color: #134242;
+}
+
+a:visited {
+    color: #217575;
+    text-decoration-color: #134242;
+}
+
+
 .container-wrapper {
     max-width: 600px;
     margin-left: 400px;
     word-break: break-word;
+}
+
+.container-wrapper li {
+    color: white;
+    padding: 10px;
+}
+
+.container-wrapper li:hover {
+    transition: none;
+    background-color: #217575;
 }
 
 
@@ -75,35 +104,3 @@ h3 {
     width: 70px;
     cursor: pointer;
 }
-
-/* .chat-setup-nickname input {
-    box-sizing: border-box;
-    display: inline-block;
-    width: 200px;
-    margin: 0;
-}
-
-.chat-setup-nickname label {
-    margin: 30px 0 5px;
-} */
-
-/* .chat-setup-nickname input[type="submit"] {
-    display: block;
-    width: 200px;
-    margin: 10px 0;
-} */
-
-/* .chat-query {
-    width: 600px;
-    margin: 20px 0;
-} */
-
-/* .chat-query input {
-    display: block;
-    width: 180px;
-}
-
-.chat-query input[type="submit"] {
-    display: block;
-    margin: 30px 0 0;
-} */
